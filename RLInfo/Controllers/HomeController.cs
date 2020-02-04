@@ -15,7 +15,7 @@ namespace RLInfo.Controllers
 
         //AINDA FALTA:
         //MELHORAR O FRONT END
-      // Testar o crud
+      // Testar todo o crud
       public void Sair()
         {
             Session["UsuarioLogado"] = null;
