@@ -1,0 +1,96 @@
+﻿@model RLInfo.Models.Cliente
+<h3 class="text-primary">Buscar cliente cadastrado</h3>
+<form class="mt-5" method="post" action="Carteira">
+    <div class="row">
+        <div class="form-group col">
+            <label>Cliente</label>
+        </div>
+        <div class="form-group col-4">
+            <input class="form-control col" type="text" name="cliente" maxlength="60" pattern="[A-Za-z]{4,60}" />
+        </div>
+        <div class="form-group col">
+            <label>CPF</label>
+        </div>
+        <div class="form-group col-2 ml-n5">
+            <input class="form-control col" type="text" name="CPF" placeholder="Ex.124578963253" maxlength="13" minlength="9" pattern="[0-9]+$" />
+        </div>
+        <div class="col">
+            <button type="submit" class="btn btn-dark"><span class=""></span>Buscar</button>
+        </div>
+    </div>
+    <!------------------------------------------------------------------------->
+    <hr />
+    <fieldset class="border-right">
+        <legend>Dados cliente</legend>
+        <div class="container row">
+
+            <div class="form-group col-3">
+                <label class="text-secondary">Nome </label>
+                <input class="form-control col" type="text" name="nome" maxlength="60" value="@ViewData["Nome"]" readonly />
+            </div>
+            <div class="form-group col-3">
+                <label class="text-secondary">Endereço</label>
+                <input class="form-control col" type="text" name="endereco" maxlength="60" value="@ViewData["Endereco"]" readonly />
+            </div>
+            <div class="form-group col-3">
+                <label class="text-secondary">Bairro </label>
+                <input class="form-control col" type="text" name="bairro" maxlength="60" value="@ViewData["Bairro"]" readonly />
+            </div>
+            <div class="form-group col-3">
+                <label class="text-secondary">Estado</label>
+                <input class="form-control col" type="text" name="estado" maxlength="60" value="@ViewData["Estado"]" readonly />
+            </div>
+            <div class="form-group col-3">
+                <label class="text-secondary">Cep </label>
+                <input class="form-control col" type="text" name="cep" maxlength="60" value="@ViewData["Cep"]" readonly />
+            </div>
+            <div class="form-group col-3">
+                <label class="text-secondary">Telefone </label>
+                <input class="form-control col" type="text" name="telefone" maxlength="60" value="@ViewData["Telefone"]" readonly />
+            </div>
+            <div class="form-group col-3">
+                <label class="text-secondary">CPF </label>
+                <input class="form-control col" type="text" name="cpf" maxlength="13" minlength="9" value="@ViewData["CPF"]" readonly pattern="[0-9]+$" />
+            </div>
+        </div>
+    </fieldset>
+    <!-------------------------------------------------------------------------->
+    <hr />
+    <fieldset class="border-right ">
+        <legend>Dados do Equipamento</legend>
+        <div class="container row">
+            <div class="form-group col-3">
+                <label class="text-secondary">Modelo</label>
+                <input class="form-control col" type="text" name="modelo" maxlength="60" value="@ViewData["Modelo"]" readonly />
+            </div>
+            <div class="form-group col-3">
+                <label class="text-secondary">Marca </label>
+                <input class="form-control col" type="text" name="marca" maxlength="60" value="@ViewData["Marca"]" readonly />
+            </div>
+            <div class="form-group col-3">
+                <label class="text-secondary">Defeito</label>
+                <input class="form-control col" type="text" name="Defeito" maxlength="60" value="@ViewData["Defeito"]" readonly />
+            </div>
+            <div class="form-group col-3">
+                <label class="text-secondary"> Tipo</label>
+                <input class="form-control col" type="text" name="tipo" maxlength="60" value="@ViewData["Tipo"]" readonly />
+            </div>
+            <div class="form-group col-6">
+                <label class="text-secondary"> Observação </label>
+                <textarea type="text" rows="5" cols="5" name="observacao" class="form-control" readonly> @ViewData["ObservacaoY"]</textarea>
+            </div>
+
+        </div>
+    </fieldset>
+    <!------------------------------------------------------------------------------->
+    <div>
+        <button class="btn btn-dark" name="Button" value="Novo">Novo</button>
+        <button class="btn btn-dark" name="Button" value="Editar">Editar</button>
+        <button class="btn btn-dark" name="Button" value="Sair">Sair</button>
+    </div>
+
+</form>
+
+<hr />
+
+
