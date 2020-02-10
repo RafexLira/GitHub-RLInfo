@@ -142,9 +142,9 @@
     <Compile Include="Mapping\ClienteMap.cs" />
     <Compile Include="Mapping\EquipamentoMap.cs" />
     <Compile Include="Mapping\UsuarioMap.cs" />
-    <Compile Include="Migrations\202001270531167_mig.cs" />
-    <Compile Include="Migrations\202001270531167_mig.Designer.cs">
-      <DependentUpon>202001270531167_mig.cs</DependentUpon>
+    <Compile Include="Migrations\202002101858253_rlinformig.cs" />
+    <Compile Include="Migrations\202002101858253_rlinformig.Designer.cs">
+      <DependentUpon>202002101858253_rlinformig.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Adm.cs" />
@@ -321,8 +321,8 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202001270531167_mig.resx">
-      <DependentUpon>202001270531167_mig.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202002101858253_rlinformig.resx">
+      <DependentUpon>202002101858253_rlinformig.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

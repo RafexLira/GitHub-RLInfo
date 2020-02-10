@@ -7,13 +7,13 @@ namespace RLInfo.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class mig : IMigrationMetadata
+    public sealed partial class rlinformig : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(mig));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(rlinformig));
         
         string IMigrationMetadata.Id
         {
-            get { return "202001270531167_mig"; }
+            get { return "202002101858253_rlinformig"; }
         }
         
         string IMigrationMetadata.Source
