@@ -4,4 +4,33 @@
 }
 
 <h2>LoginAdm</h2>
-
+<div class="row">
+    <div class="col-4 col-sm-4 col-md-4 col-lg-4 bg-success">Equerda</div>
+    <div class="col-4 col-sm-4 col-md-4 col-lg-4 bg-danger  text-center">
+        <fieldset class="border border-dark">
+            <legend> Administrador</legend>
+            <form method="post" action="LoginAdm" name="" class="ml-2">
+                <div class="row col">
+                    <div class="form-group col">
+                        <label>Adminstrador</label>
+                    </div>
+                    <div class="form-group col">
+                        <input type="text" name="nome" maxlength="30" required />
+                    </div>
+                </div>
+                <div class="row col">
+                    <div class="form-group col">
+                        <label>Senha</label>
+                    </div>
+                    <div class="form-group col">
+                        <input type="password" name="senha" maxlength="30" class="mb-2" required />
+                    </div>
+                </div>
+                <div class="row col form-group text-center">
+                    <button class="mr-3" type="submit">Entrar</button>
+                </div>
+            </form>
+        </fieldset>
+    </div>
+    <div class="col-4 col-sm-4 col-md-4 col-lg-4 bg-success">Direita</div>
+</div>

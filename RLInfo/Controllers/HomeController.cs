@@ -14,7 +14,9 @@ namespace RLInfo.Controllers
         Contexto ctx = new Contexto();
 
         //AINDA FALTA:
+        //ADICIONAR LOGIN ADM 
         //MELHORAR O FRONT END
+        //ACRESCENTAR CAMPO DATA DE ATENDIMENTO
       // Testar todo o crud
       public void Sair()
         {

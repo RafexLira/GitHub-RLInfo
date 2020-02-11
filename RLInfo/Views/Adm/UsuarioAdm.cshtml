@@ -3,26 +3,41 @@
     ViewBag.Title = "UsuarioAdm";
 }
 
-<h2>UsuarioAdm</h2>
+    <fieldset class="border border-dark">
+        <legend>Adminstrador</legend>
 
-<form method="post" action="UsuarioAdm">
-    <div class="col-12">
-        <div>
-            Nome: <input type="text" name="nome" />
-        </div><br />
-        <div>
-            Email: <input type="text" name="email" />
-        </div><br />
-        <div>
-            Senha: <input type="text" name="senha" />
-        </div>
-        <br />
-        <div>
-            Rg: <input type="text" name="rg" />
-        </div><br />
-        <div>
-            <button type="submit">Adicionar</button>
-        </div>
+        <form method="post" action="UsuarioAdm">
+            <div class="row col-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="form-group col-6 col-sm-6 col-md-6 col-lg-6">
+                    <div class="col-6">
+                        <label class="text-secondary">Nome</label>
+                        <input class="form-control" type="text" name="nome" maxlength="30" pattern="[A-Za-z\s] " required />
+                    </div>
+                </div>
+                <div class="form-group col-6 col-sm-6 col-md-6 col-lg-6">
+                    <div class="col-6">
+                        <label class="text-secondary">Email</label>
+                        <input class="form-control" type="text" name="email" maxlength="60" required />
+                    </div>
+                </div>
+                <div class="form-group col-6 col-sm-6 col-md-6 col-lg-6">
+                    <div class="col-6">
+                        <label class="text-secondary">Crie uma Senha</label>
+                        <input class="form-control" type="text" name="senha" maxlength="30" required />
+                    </div>
+                </div>
+                <br />
+                <div class="form-group col-6 col-sm-6 col-md-6 col-lg-6">
+                    <div class="col-6">
+                        <label class="text-secondary">RG</label>
+                        <input class="form-control" type="text" name="rg" maxlength="13" pattern="[0-9]+$" required />
+                    </div>
+                </div>
+                <div class="form-group col-6 col-sm-6 col-md-6 col-lg-6">
+                    <button type="submit" class="btn btn-dark">Adicionar</button>
+                    <button type="button" class="btn btn-dark">Sair</button>
+                </div>
 
-    </div>
-</form>
+            </div>
+        </form>
+    </fieldset>
