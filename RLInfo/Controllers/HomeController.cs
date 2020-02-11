@@ -49,9 +49,9 @@ namespace RLInfo.Controllers
             var login = ctx.Usuarios;
             foreach (var usuario in login)
             {
-                if (usu.Nome == usuario.Nome && usu.Senha == usuario.Senha)
+                if (usu.Nome.ToUpper() == usuario.Nome.ToUpper() && usu.Senha == usuario.Senha)
                 {
-                    Session["UsuarioLogado"] = usu.Nome;                 
+                    Session["UsuarioLogado"] = usu.Nome.ToUpper();                 
                     return RedirectToAction("Carteira");
                 }
                
@@ -79,8 +79,12 @@ namespace RLInfo.Controllers
             ctx.Clientes.Add(clienteObj);
             ctx.Equipamentos.Add(equipamentoObj);
             ctx.SaveChanges();
-            MessageBox.Show("Adicionado com sucesso!", "Mensagem");
-            return View();
+            if (MessageBox.Show("Adicionado com sucesso! Deseja adicionar outro?", "ATENÇÃO", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                return View();
+            }
+          
+            return RedirectToAction("Carteira");
         }
         public ActionResult Editar(int Id)
         {
