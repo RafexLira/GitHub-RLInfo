@@ -8,6 +8,13 @@
     padding-left: 15px;
     padding-right: 15px;
 }
+.fieldset{
+    border-color:black;
+    padding:1px;
+    margin:1px;
+    width:1px;
+    height:1px;
+}
 
 /* Override the default bootstrap behavior where horizontal description lists 
    will truncate terms that are too long to fit in the left column 

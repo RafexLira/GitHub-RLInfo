@@ -296,7 +296,8 @@ textarea {
   resize: vertical;
 }
 
-fieldset {
+.fieldset {
+   border-color: black;
   min-width: 0;
   padding: 0;
   margin: 0;
