@@ -1,43 +1,60 @@
 ﻿
-@{
-    ViewBag.Title = "UsuarioAdm";
-}
+<h3 class="text-primary">Buscar usuário</h3>
+<form class="mt-5" method="post" action="UsuarioAdm">
+    <div class="row">
+        <div class="form-group col">
+            <label>Nome</label>
+        </div>
+        <div class="form-group col-4">
+            <input class="form-control col" type="text" name="Nome" maxlength="60" pattern="[A-Za-z\s]{4,60}" />
+        </div>
+        <div class="form-group col">
+            <label>RG</label>
+        </div>
+        <div class="form-group col-2 ml-n5">
+            <input class="form-control col" type="text" name="RG" placeholder="Ex.124578963253" maxlength="13" pattern="[0-9]+$" />
+        </div>
+        <div class="col">
+            <button type="submit" class="btn btn-dark"><span class=""></span>Buscar</button>
+        </div>
+    </div>
+    <!------------------------------------------------------------------------->
+    <hr />
+    <fieldset class="border-right">
+        <legend>Dados do usuário</legend>
+        <div class="container row">
 
-    <fieldset class="border border-dark">
-        <legend>Adminstrador</legend>
-
-        <form method="post" action="UsuarioAdm">
-            <div class="row col-12 col-sm-12 col-md-12 col-lg-12">
-                <div class="form-group col-6 col-sm-6 col-md-6 col-lg-6">
-                    <div class="col-6">
-                        <label class="text-secondary">Nome</label>
-                        <input class="form-control" type="text" name="nome" maxlength="30" pattern="[A-Za-z\s] " required />
-                    </div>
-                </div>
-                <div class="form-group col-6 col-sm-6 col-md-6 col-lg-6">
-                    <div class="col-6">
-                        <label class="text-secondary">Email</label>
-                        <input class="form-control" type="text" name="email" maxlength="60" required />
-                    </div>
-                </div>
-                <div class="form-group col-6 col-sm-6 col-md-6 col-lg-6">
-                    <div class="col-6">
-                        <label class="text-secondary">Crie uma Senha</label>
-                        <input class="form-control" type="text" name="senha" maxlength="30" required />
-                    </div>
-                </div>
-                <br />
-                <div class="form-group col-6 col-sm-6 col-md-6 col-lg-6">
-                    <div class="col-6">
-                        <label class="text-secondary">RG</label>
-                        <input class="form-control" type="text" name="rg" maxlength="13" pattern="[0-9]+$" required />
-                    </div>
-                </div>
-                <div class="form-group col-6 col-sm-6 col-md-6 col-lg-6">
-                    <button type="submit" class="btn btn-dark">Adicionar</button>
-                    <button type="button" class="btn btn-dark">Sair</button>
-                </div>
-
+            <div class="form-group col-3">
+                <label class="text-secondary">Nome </label>
+                <input class="form-control col" type="text" name="nomex" maxlength="60" value="@ViewData["Nome"]" readonly />
             </div>
-        </form>
+            <div class="form-group col-3">
+                <label class="text-secondary">Email</label>
+                <input class="form-control col" type="text" name="email" maxlength="60" value="@ViewData["Email"]" readonly />
+            </div>
+            <div class="form-group col-3">
+                <label class="text-secondary">Senha</label>
+                <input class="form-control col" type="text" name="senha" maxlength="60" value="@ViewData["Senha"]" readonly />
+            </div>
+            <div class="form-group col-3">
+                <label class="text-secondary">RG</label>
+                <input class="form-control col" type="text" name="rg" maxlength="60" value="@ViewData["RG"]" readonly />
+            </div>
+       
+        </div>
     </fieldset>
+    <!-------------------------------------------------------------------------->
+    <hr />
+   
+    <!------------------------------------------------------------------------------->
+    <div>
+        <button class="btn btn-dark" type="submit" name="Button" value="Novo">Novo</button>
+        <button class="btn btn-dark" type="submit" name="Button" value="Editar">Editar</button>
+        <button class="btn btn-dark" type="submit" name="Button" value="Sair">Sair</button>
+    </div>
+
+</form>
+
+<hr />
+
+

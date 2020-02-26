@@ -1,0 +1,41 @@
+﻿
+@{
+    ViewBag.Title = "NovoUsuario";
+}
+
+<h2>NovoUsuario</h2>
+
+<form method="post" action="NovoUsuario">
+    <fieldset class="border-right">
+        <legend class="text-primary">Adicionar novo usuario</legend>
+
+        <div class="container row">
+
+            <div class="form-group col-3">
+                <label class="text-secondary">Nome </label>
+                <input class="form-control col" type="text" name="nome" maxlength="60" pattern="[A-Za-z\s]{4,60}" />
+
+            </div>
+            <div class="form-group col-3">
+                <label class="text-secondary">Email</label>
+                <input class="form-control col" type="text" name="email" maxlength="60" />
+            </div>
+            <div class="form-group col-3">
+                <label class="text-secondary">RG </label>
+                <input class="form-control col" type="text" name="rg" maxlength="60" />
+            </div>
+            <div class="form-group col-3">
+                <label class="text-secondary">Senha</label>
+                <input class="form-control col" type="text" name="senha" maxlength="60" />
+            </div>
+            <div>
+                <button type="submit" class="btn btn-dark">Adicionar</button>
+            </div>
+            <div>
+                <button type="submit" value="Voltar" class="btn btn-dark">Voltar</button>
+            </div>
+           
+
+        </div>
+    </fieldset>
+</form>

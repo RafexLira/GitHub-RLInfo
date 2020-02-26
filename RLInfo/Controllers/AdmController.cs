@@ -23,26 +23,35 @@ namespace RLInfo.Controllers
         [HttpPost]
         public ActionResult LoginAdm(Adm Ad)
         {
-            var admin = ctx.Adms;
-            foreach (var adx in admin)
-            {
-                if (Ad.Nome.ToString().ToUpper() == adx.Nome && Ad.Senha== adx.Senha )
-                {
-                    Session["AdmLogado"] = Ad.Nome.ToUpper();
-                    return RedirectToAction("UsuarioAdm");
-                }
-                else
-                {
-                    MessageBox.Show("Adminstrador não encontrado");
-                    return View(Ad);
-                }
 
+            if (Ad.Nome == null || Ad.Senha == null)
+            {
+                MessageBox.Show("Este campo não pode está vazio");
+                return View(Ad);
             }
-            return View();
+
+                var admin = ctx.Adms;
+                foreach (var adx in admin)
+                {
+                    if (Ad.Nome.ToString().ToUpper() == adx.Nome && Ad.Senha == adx.Senha)
+                    {
+                        Session["AdmLogado"] = Ad.Nome.ToUpper();
+                        return RedirectToAction("UsuarioAdm");
+                    }       
+                    else
+                    {
+                        MessageBox.Show("Adminstrador não encontrado");
+                        return View(Ad);
+                    }
+
+                }
+           
+            return View(Ad);
         }
-       public ActionResult UsuarioAdm()
+     
+        public ActionResult NovoUsuario()
         {
-            if (Session["AdmLogado"]!=null)
+            if (Session["AdmLogado"] != null)
             {
                 return View();
             }
@@ -50,23 +59,156 @@ namespace RLInfo.Controllers
             {
                 return RedirectToAction("LoginAdm");
             }
-           
         }
-     
         [HttpPost]
-        public ActionResult UsuarioAdm(Usuario usuario)
+        public ActionResult NovoUsuario(Usuario usuario)
         {
             try
             {
-                ctx.Usuarios.Add(new Usuario { Id = 1, Nome = usuario.Nome.ToUpper(), Email = usuario.Email, RG = usuario.RG, Senha = usuario.Senha });
+                ctx.Usuarios.Add(new Usuario { Id = 1, Nome = usuario.Nome.ToUpper(), Email = usuario.Email.ToLower(), RG = usuario.RG, Senha = usuario.Senha });
                 ctx.SaveChanges();
-                MessageBox.Show("Usuário adicionado com sucesso!");
+                if (MessageBox.Show("Adicionado com sucesso! Deseja adicionar outro?", "ATENÇÃO", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    return View();
+                }
+                else
+                {
+                    return RedirectToAction("UsuarioAdm");
+                }
+
+
             }
             catch
             {
-                MessageBox.Show("Erro ao adicionar, verifique os campos!");
+                MessageBox.Show("Preencha os todos os campos corretamente");
             }
             return View();
+        }
+
+
+        public ActionResult EditarUsuario(int Id)
+        {
+            if (Session["AdmLogado"] != null && Id!=0)
+            {
+                var usuario = ctx.Usuarios.Find(Id);
+                ViewData["Nome"] = usuario.Nome;
+                ViewData["Email"] = usuario.Email;
+                ViewData["RG"] = usuario.RG;
+                ViewData["Senha"] = usuario.Senha;
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("LoginAdm");
+            }
+        }
+        [HttpPost]
+        public ActionResult EditarUsuario(string nomex, string nome, string rg, string email, string senha)
+        {
+            try
+            {
+                var x = ctx.Usuarios.First(a => a.Nome == nomex);
+                x.Nome = nome;
+                x.Email = email;
+                x.RG = rg;
+                x.Senha = senha;
+
+                ctx.SaveChanges();
+                MessageBox.Show("Alterado com sucesso!");
+            }
+            catch
+            {
+                MessageBox.Show("Erro ao adicionar");
+            }          
+            
+
+            return View();
+        }
+
+            public ActionResult UsuarioAdm()
+        {
+            if (Session["AdmLogado"] != null)
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("LoginAdm");
+            }
+
+        }
+        [HttpPost]
+        public ActionResult UsuarioAdm(Usuario usuario, string Button, string nomex)
+        {
+           
+            if (usuario.Nome == null && usuario.RG == null && Button == null)
+            {
+                MessageBox.Show("Preencha um dos campos");
+                return View();
+                
+            }
+
+           switch (Button)
+            {
+                case "Novo":
+                    return RedirectToAction("NovoUsuario");
+                case "Editar":
+                    if (nomex == "")
+                    {
+                        MessageBox.Show("Não existe cliente para editar", "Atenção!");
+                        return View();
+                    }
+                    var c = ctx.Usuarios.First(a => a.Nome == nomex.ToUpper());
+
+                        return RedirectToAction("EditarUsuario", c);
+                 
+                 
+                case "Sair":
+                    Session["AdmLogado"]=null;
+                    return RedirectToAction("LoginAdm");
+            }
+
+            try
+            {
+                if (usuario.Nome != null && usuario.RG == null)
+                {
+                    var x = ctx.Usuarios.First(a => a.Nome == usuario.Nome);
+                    if (usuario.Nome.ToUpper() == x.Nome)
+                    {
+                        ViewData["Nome"] = x.Nome;
+                        ViewData["RG"] = x.RG;
+                        ViewData["Email"] = x.Email;
+                        ViewData["Senha"] = x.Senha;
+                    }
+
+                }
+                if (usuario.RG != null && usuario.Nome == null)
+                {
+                    var y = ctx.Usuarios.First(b => b.RG == usuario.RG);
+                    if (usuario.RG == y.RG)
+                    {
+                        ViewData["Nome"] = y.Nome;
+                        ViewData["RG"] = y.RG;
+                        ViewData["Email"] = y.Email;
+                        ViewData["Senha"] = y.Senha;
+
+                    }
+                }
+                if (usuario.Nome != null && usuario.RG != null)
+                {
+                    MessageBox.Show("Preencha apenas 1 campo");
+                }
+
+            }
+            catch
+            {
+                MessageBox.Show("Usuário não encontrado!");
+            }
+            return View();
+
+
+
+
         }
     }
 }

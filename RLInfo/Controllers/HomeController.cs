@@ -14,7 +14,9 @@ namespace RLInfo.Controllers
         Contexto ctx = new Contexto();
 
         //AINDA FALTA:
-        //MELHORAR O FRONT END
+        // corrigir erro no adm controle ao buscar usuario pelo rg 
+        // 2 - Terminar o front end UsuarioAdm e verificar
+        
       
       // Testar todo o crud
       public void Sair()

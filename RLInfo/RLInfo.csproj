@@ -305,6 +305,8 @@
     <Content Include="Views\Home\Delete.cshtml" />
     <Content Include="Views\Adm\UsuarioAdm.cshtml" />
     <Content Include="Views\Adm\LoginAdm.cshtml" />
+    <Content Include="Views\Adm\NovoUsuario.cshtml" />
+    <Content Include="Views\Adm\EditarUsuario.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
