@@ -26,7 +26,7 @@ namespace RLInfo.Controllers
 
             if (Ad.Nome == null || Ad.Senha == null)
             {
-                MessageBox.Show("Este campo não pode está vazio");
+                MessageBox.Show("Preencha todos os campos");
                 return View(Ad);
             }
 
@@ -40,7 +40,7 @@ namespace RLInfo.Controllers
                     }       
                     else
                     {
-                        MessageBox.Show("Adminstrador não encontrado");
+                        MessageBox.Show("Administrador não encontrado");
                         return View(Ad);
                     }
 
@@ -61,8 +61,13 @@ namespace RLInfo.Controllers
             }
         }
         [HttpPost]
-        public ActionResult NovoUsuario(Usuario usuario)
+        public ActionResult NovoUsuario(Usuario usuario, string Button)
         {
+            if (Button != null)
+            {
+                return RedirectToAction("UsuarioAdm");
+            }
+
             try
             {
                 ctx.Usuarios.Add(new Usuario { Id = 1, Nome = usuario.Nome.ToUpper(), Email = usuario.Email.ToLower(), RG = usuario.RG, Senha = usuario.Senha });
@@ -103,13 +108,24 @@ namespace RLInfo.Controllers
             }
         }
         [HttpPost]
-        public ActionResult EditarUsuario(string nomex, string nome, string rg, string email, string senha)
+        public ActionResult EditarUsuario(string Button, string nomex, string nome, string rg, string email, string senha)
         {
+            if (Button =="Voltar")
+            {
+                return RedirectToAction("UsuarioAdm");
+            }
+            if (Button =="Deletar")
+            {
+                var usuario = ctx.Usuarios.First(x => x.Nome == nome);
+                delete(usuario.Id);
+                return View();
+                
+            }
             try
             {
                 var x = ctx.Usuarios.First(a => a.Nome == nomex);
-                x.Nome = nome;
-                x.Email = email;
+                x.Nome = nome.ToUpper();
+                x.Email = email.ToLower();
                 x.RG = rg;
                 x.Senha = senha;
 
@@ -120,12 +136,27 @@ namespace RLInfo.Controllers
             {
                 MessageBox.Show("Erro ao adicionar");
             }          
-            
-
             return View();
         }
+        int delete(int Id)
+        {
 
-            public ActionResult UsuarioAdm()
+            if (MessageBox.Show("Deseja excluir este usuário?", "ATENÇÃO", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                var x = ctx.Usuarios.Find(Id);
+                ctx.Usuarios.Remove(x);
+                ctx.SaveChanges();
+                MessageBox.Show("Excluído com sucesso!", "Mensagem");
+            }
+            else
+            {
+
+
+            }
+            return Id;
+        }
+
+        public ActionResult UsuarioAdm()
         {
             if (Session["AdmLogado"] != null)
             {

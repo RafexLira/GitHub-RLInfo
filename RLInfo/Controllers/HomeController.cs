@@ -14,11 +14,13 @@ namespace RLInfo.Controllers
         Contexto ctx = new Contexto();
 
         //AINDA FALTA:
-        // corrigir erro no adm controle ao buscar usuario pelo rg 
-        // 2 - Terminar o front end UsuarioAdm e verificar
+       
+        // 2 testar crud adm
+        // melhorar front end usuariologin e todo o home controller
+        // testar crud homecontroller
         
       
-      // Testar todo o crud
+      
       public void Sair()
         {
             Session["UsuarioLogado"] = null;

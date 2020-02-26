@@ -3,12 +3,12 @@
     ViewBag.Title = "EditarUsuario";
 }
 
-<h2>EditarUsuario</h2>
+
 
 <form method="post" action="EditarUsuario">
-    <fieldset class="border-right">
-        <legend class="text-primary">Editar Usuário</legend>
-        <div class="col">
+    <fieldset class="border border-dark p-2 m-2">
+        <legend class="w-auto pl-3 pr-3">Editar usuário</legend>
+        <div class="container row">
             <div class="form-group col-3">
                 <label class="text-secondary">Usuário</label>
                 <input class="form-control col" type="text" value="@ViewData["Nome"]" name="nomex" readonly />
@@ -16,7 +16,7 @@
             </div>
         </div>
 
-        <div class="container row">           
+        <div class="container row">
 
             <div class="form-group col-3">
                 <label class="text-secondary">Nome </label>
@@ -35,13 +35,19 @@
                 <label class="text-secondary">Senha</label>
                 <input class="form-control col" type="text" value="@ViewData["Senha"]" name="senha" maxlength="60" />
             </div>
-            <div>
-                <button type="submit" class="btn btn-dark">Alterar</button>
-            </div>
-            <div>
-                <button type="submit" value="Voltar" name="Button" class="btn btn-dark">Voltar</button>
-            </div>
-
         </div>
     </fieldset>
+    <hr />
+    <div class="row col">
+        <div>
+            <button type="submit" class="btn btn-dark mr-2">Alterar</button>
+        </div>
+        <div>
+            <button type="submit" value="Voltar" name="Button" class="btn btn-dark mr-2">Voltar</button>
+        </div>
+        <div>
+            <button type="submit" value="Deletar" name="Button" class="btn btn-dark">Excluir</button>
+        </div>
+
+    </div>
 </form>
