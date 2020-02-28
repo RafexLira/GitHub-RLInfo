@@ -26,7 +26,7 @@ namespace RLInfo.Controllers
 
             if (Ad.Nome == null || Ad.Senha == null)
             {
-                MessageBox.Show("Preencha todos os campos");
+                MessageBox.Show("Preencha todos os campos", "Atenção!");
                 return View(Ad);
             }
 
@@ -40,7 +40,7 @@ namespace RLInfo.Controllers
                     }       
                     else
                     {
-                        MessageBox.Show("Administrador não encontrado");
+                        MessageBox.Show("Administrador não encontrado", "Atenção!");
                         return View(Ad);
                     }
 
@@ -85,7 +85,7 @@ namespace RLInfo.Controllers
             }
             catch
             {
-                MessageBox.Show("Preencha os todos os campos corretamente");
+                MessageBox.Show("Preencha os todos os campos corretamente", "Atenção!");
             }
             return View();
         }
@@ -130,11 +130,11 @@ namespace RLInfo.Controllers
                 x.Senha = senha;
 
                 ctx.SaveChanges();
-                MessageBox.Show("Alterado com sucesso!");
+                MessageBox.Show("Alterado com sucesso!", "Mensagem");
             }
             catch
             {
-                MessageBox.Show("Erro ao adicionar");
+                MessageBox.Show("Erro ao adicionar", "Atenção!");
             }          
             return View();
         }
@@ -174,7 +174,7 @@ namespace RLInfo.Controllers
            
             if (usuario.Nome == null && usuario.RG == null && Button == null)
             {
-                MessageBox.Show("Preencha um dos campos");
+                MessageBox.Show("Preencha um dos campos", "Atenção!");
                 return View();
                 
             }
@@ -227,19 +227,16 @@ namespace RLInfo.Controllers
                 }
                 if (usuario.Nome != null && usuario.RG != null)
                 {
-                    MessageBox.Show("Preencha apenas 1 campo");
+                    MessageBox.Show("Preencha apenas 1 campo", "Atenção!");
                 }
 
             }
             catch
             {
-                MessageBox.Show("Usuário não encontrado!");
+                MessageBox.Show("Usuário não encontrado!", "Atenção!");
             }
             return View();
-
-
-
-
+                                 
         }
     }
 }

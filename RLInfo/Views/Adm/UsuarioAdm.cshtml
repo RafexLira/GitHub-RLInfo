@@ -1,19 +1,23 @@
 ﻿
-<h3>Buscar usuário</h3>
+<h3 class="text-left">ADM</h3>
 <form class="mt-5" method="post" action="UsuarioAdm">
-    <div class="row col">
-        <div class="row form-group col-4 mr-5">
-            <label>Nome </label>
-            <input class="form-control col ml-2" type="text" name="Nome" maxlength="60" pattern="[A-Za-z\s]{4,60}" />
+    <fieldset class="border border-dark p-2 m-2">
+        <legend class="w-auto pl-3 pr-3">Buscar Usuário</legend>
+
+        <div class="row col">
+            <div class="row form-group col-4 mr-5">
+                <label>Nome </label>
+                <input class="form-control col ml-2" type="text" name="Nome" maxlength="60" pattern="[A-Za-z\s]{4,60}" />
+            </div>
+            <div class=" row form-group col-3 mr-3">
+                <label>RG </label>
+                <input class="form-control col ml-2" type="text" name="RG" placeholder="Ex.124578963253" maxlength="13" pattern="[0-9]+$" />
+            </div>
+            <div class="col ml-2">
+                <button type="submit" class="btn btn-dark"><span class=""></span>Buscar</button>
+            </div>
         </div>
-        <div class=" row form-group col-3 mr-3">
-            <label>RG </label>
-            <input class="form-control col ml-2" type="text" name="RG" placeholder="Ex.124578963253" maxlength="13" pattern="[0-9]+$" />
-        </div>
-        <div class="col ml-2">
-            <button type="submit" class="btn btn-dark"><span class=""></span>Buscar</button>
-        </div>
-    </div>
+    </fieldset>
    
     <!------------------------------------------------------------------------->
     <hr />

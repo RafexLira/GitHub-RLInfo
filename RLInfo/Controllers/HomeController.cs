@@ -14,11 +14,14 @@ namespace RLInfo.Controllers
         Contexto ctx = new Contexto();
 
         //AINDA FALTA:
-       
-        // 2 testar crud adm
-        // melhorar front end usuariologin e todo o home controller
-        // testar crud homecontroller
         
+        // adicionar campo e-mail e testar crud home
+       
+
+        // verificar duplicidade nos registros e chaves no banco
+       
+        // melhorar front end usuariologin e todo o home controller
+        // testar crud homecontroller       
       
       
       public void Sair()
@@ -61,7 +64,7 @@ namespace RLInfo.Controllers
                 }
                
             }
-            MessageBox.Show("Usuário e/ou senha inválidos");
+            MessageBox.Show("Usuário e/ou senha inválidos", "Atenção!");
             return View(usu);
 
         }
@@ -74,23 +77,44 @@ namespace RLInfo.Controllers
             return RedirectToAction("Index");
         }
         [HttpPost]
-        public ActionResult Novo(long cpf, string nome, string endereco, string bairro, string estado, string cep, string telefone, string observacao, string tipo, string marca, string modelo, string defeito)
+        public ActionResult Novo(Cliente cliente, Equipamento equipamento)
         {
-
-
-            Cliente clienteObj = new Cliente { Id = 1, CPF = cpf, Nome = nome.ToUpper(), Endereco = endereco.ToUpper(), Bairro = bairro.ToUpper(), Estado = estado.ToUpper(), Cep = cep, Telefone = telefone };
-            Equipamento equipamentoObj = new Equipamento { Tipo = tipo.ToUpper(), Modelo = modelo.ToUpper(), Marca = marca.ToUpper(), Defeito = defeito.ToUpper(), Observacao = observacao.ToUpper(), ClienteId = 1 };
-
-            ctx.Clientes.Add(clienteObj);
-            ctx.Equipamentos.Add(equipamentoObj);
-            ctx.SaveChanges();
-            if (MessageBox.Show("Adicionado com sucesso! Deseja adicionar outro?", "ATENÇÃO", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            try
             {
+                ctx.Clientes.Add( new Cliente { CPF= cliente.CPF, Nome =cliente.Nome.ToUpper(), Endereco= cliente.Endereco.ToUpper(), Telefone = cliente.Telefone, Bairro=cliente.Bairro.ToUpper(), Cep = cliente.Cep, Estado = cliente.Estado.ToUpper(), Observacao="" });
+                ctx.Equipamentos.Add(equipamento);
+                ctx.SaveChanges();
+                MessageBox.Show("Cliente adicionado com sucesso!");
+                return View();
+            }
+            catch
+            {
+                MessageBox.Show("Erro ao adicionar, verifique todos os campos", "Atenção!");
+              
                 return View();
             }
           
-            return RedirectToAction("Carteira");
         }
+        //[HttpPost]
+        //public ActionResult Novo(long cpf, string nome, string endereco, string bairro, string estado, string cep, string telefone, string observacao, string tipo, string marca, string modelo, string defeito)
+        //{
+
+            
+
+        //        Cliente clienteObj = new Cliente { Id = 1, CPF = cpf, Nome = nome.ToUpper(), Endereco = endereco.ToUpper(), Bairro = bairro.ToUpper(), Estado = estado.ToUpper(), Cep = cep, Telefone = telefone };
+        //        Equipamento equipamentoObj = new Equipamento { Tipo = tipo.ToUpper(), Modelo = modelo.ToUpper(), Marca = marca.ToUpper(), Defeito = defeito.ToUpper(), Observacao = observacao.ToUpper(), ClienteId = 1 };
+
+        //        ctx.Clientes.Add(clienteObj);
+        //        ctx.Equipamentos.Add(equipamentoObj);
+        //        ctx.SaveChanges();
+        //        if (MessageBox.Show("Adicionado com sucesso! Deseja adicionar outro?", "ATENÇÃO", MessageBoxButtons.YesNo) == DialogResult.Yes)
+        //        {
+        //            return View();
+        //        }
+                        
+          
+        //    return RedirectToAction("Carteira");
+        //}
         public ActionResult Editar(int Id)
         {
             if (Session["UsuarioLogado"]!= null && Id != 0)
@@ -176,6 +200,7 @@ namespace RLInfo.Controllers
                     }
                     else
                     {
+                        MessageBox.Show("Os dados não foram alterados!", "Atenção!");
                         break;
                     }
                 case "Delete":
@@ -265,18 +290,18 @@ namespace RLInfo.Controllers
             }
             catch (Exception)
             {
-                MessageBox.Show("Não existe cliente para editar", "Error ao Editar");
+                MessageBox.Show("Não existe cliente para editar", "Atenção!");
                 return View();
             }
 
             if (cliente == "" && cpf <= 0)
             {
-                MessageBox.Show("Um dos campos precisa ser preenchido");
+                MessageBox.Show("Um dos campos precisa ser preenchido", "Atenção!");
                 return View();
             }
             if (cliente != "" && cpf != 0)
             {
-                MessageBox.Show("Somente um dos campos pode ser preenchido");
+                MessageBox.Show("Somente um dos campos pode ser preenchido", "Atenção!");
                 return View();
             }
             if (cliente != "")
@@ -352,14 +377,14 @@ namespace RLInfo.Controllers
                     }
                     else if (cliente != x.Nome && cpf != x.CPF)
                     {
-                        MessageBox.Show("Cliente não encontrado");
+                        MessageBox.Show("Cliente não encontrado", "Atenção!");
                         return View();
                     }
 
                 }
                 catch
                 {
-                    MessageBox.Show("Cliente não encontrado");
+                    MessageBox.Show("Cliente não encontrado", "Atenção!");
                     return View();
                 }
 

@@ -1,76 +1,76 @@
 ﻿
-<form method="post" action="Novo">
-    <fieldset class="border-right">
-        <legend class="text-primary">Adicionar novo cliente</legend>
+    <form method="post" action="Novo">
+        <fieldset class="border border-dark p-2 m-2">
+            <legend class="w-auto pl-3 pr-3">Adicionar Cliente</legend>
 
-        <div class="container row">
+            <div class="container row">
 
-            <div class="form-group col-3">
-                <label class="text-secondary">Nome </label>
-                <input class="form-control col" type="text" name="nome" maxlength="60" pattern="[A-Za-z\s]{4,60}" />
-               
+                <div class="form-group col-3">
+                    <label class="text-secondary">Nome </label>
+                    <input class="form-control col" type="text" name="nome" maxlength="60" pattern="[A-Za-z\s]{4,60}" />
+
+                </div>
+                <div class="form-group col-3">
+                    <label class="text-secondary">Endereço</label>
+                    <input class="form-control col" type="text" name="endereco" maxlength="60" />
+                </div>
+                <div class="form-group col-3">
+                    <label class="text-secondary">Bairro </label>
+                    <input class="form-control col" type="text" name="bairro" maxlength="60" />
+                </div>
+                <div class="form-group col-3">
+                    <label class="text-secondary">Estado</label>
+                    <input class="form-control col" type="text" name="estado" maxlength="60" pattern="[A-Za-z\s]{1,60}" />
+                </div>
+                <div class="form-group col-3">
+                    <label class="text-secondary">Cep </label>
+                    <input class="form-control col" type="text" name="cep" maxlength="60" pattern="[0-9]+$" />
+                </div>
+                <div class="form-group col-3">
+                    <label class="text-secondary">Telefone </label>
+                    <input class="form-control col" type="text" name="telefone" maxlength="60" pattern="[0-9]+$" />
+                </div>
+                <div class="form-group col-3">
+                    <label class="text-secondary">CPF </label>
+                    <input class="form-control col" type="text" name="cpf" maxlength="13" pattern="[0-9]+$" />
+                </div>
+
             </div>
-            <div class="form-group col-3">
-                <label class="text-secondary">Endereço</label>
-                <input class="form-control col" type="text" name="endereco" maxlength="60" />
+        </fieldset>
+        <!-------------------------------------------------------------------------->
+        <hr />
+        <fieldset class="border border-dark p-2 m-2">
+            <legend class="w-auto pl-3 pr-3">Vincular Equipamento</legend>
+            <div class="container row">
+                <div class="form-group col-3">
+                    <label class="text-secondary">Modelo</label>
+                    <input class="form-control col" type="text" name="modelo" maxlength="60" placeholder="Ex. E1-571" />
+                </div>
+                <div class="form-group col-3">
+                    <label class="text-secondary">Marca </label>
+                    <input class="form-control col" type="text" name="marca" maxlength="60" placeholder="Ex. ACER" />
+                </div>
+                <div class="form-group col-3">
+                    <label class="text-secondary">Defeito</label>
+                    <input class="form-control col" type="text" name="Defeito" maxlength="60" placeholder="Ex. Aquecimento" />
+                </div>
+                <div class="form-group col-3">
+                    <label class="text-secondary"> Tipo</label>
+                    <input class="form-control col" type="text" name="tipo" maxlength="60" placeholder="Ex. Notebook" />
+                </div>
+                <div class="form-group col-6">
+                    <label class="text-secondary"> Observação </label>
+                    <textarea placeholder="Data de cadastro, data do atendimento, informações importantes.." type="text" rows="5" cols="5" maxlength="300" name="observacao" class="form-control"></textarea>
+                </div>
+
             </div>
-            <div class="form-group col-3">
-                <label class="text-secondary">Bairro </label>
-                <input class="form-control col" type="text" name="bairro" maxlength="60" />
-            </div>
-            <div class="form-group col-3">
-                <label class="text-secondary">Estado</label>
-                <input class="form-control col" type="text" name="estado" maxlength="60" pattern="[A-Za-z\s]{1,60}" />
-            </div>
-            <div class="form-group col-3">
-                <label class="text-secondary">Cep </label>
-                <input class="form-control col" type="text" name="cep" maxlength="60" pattern="[0-9]+$" />
-            </div>
-            <div class="form-group col-3">
-                <label class="text-secondary">Telefone </label>
-                <input class="form-control col" type="text" name="telefone" maxlength="60" pattern="[0-9]+$" />
-            </div>
-            <div class="form-group col-3">
-                <label class="text-secondary">CPF </label>
-                <input class="form-control col" type="text" name="cpf" maxlength="13" pattern="[0-9]+$" />
-            </div>
+        </fieldset>
+        <div class="form-group container row">
+            <button type="submit" class="btn btn-dark mr-3"><span class=""></span>Adicionar</button>
+            <a type="button" class="btn btn-dark" href="Carteira" ,"Home">Voltar</a>
 
         </div>
-    </fieldset>
-    <!-------------------------------------------------------------------------->
-    <hr />
-    <fieldset class="border-right ">
-        <legend> Equipamento</legend>
-        <div class="container row">
-            <div class="form-group col-3">
-                <label class="text-secondary">Modelo</label>
-                <input class="form-control col" type="text" name="modelo" maxlength="60" placeholder="Ex. E1-571" />
-            </div>
-            <div class="form-group col-3">
-                <label class="text-secondary">Marca </label>
-                <input class="form-control col" type="text" name="marca" maxlength="60" placeholder="Ex. ACER" />
-            </div>
-            <div class="form-group col-3">
-                <label class="text-secondary">Defeito</label>
-                <input class="form-control col" type="text" name="Defeito" maxlength="60" placeholder="Ex. Aquecimento" />
-            </div>
-            <div class="form-group col-3">
-                <label class="text-secondary"> Tipo</label>
-                <input class="form-control col" type="text" name="tipo" maxlength="60" placeholder="Ex. Notebook" />
-            </div>
-            <div class="form-group col-6">
-                <label class="text-secondary"> Observação </label>
-                <textarea placeholder="Data de cadastro, data do atendimento, informações importantes.." type="text" rows="5" cols="5" maxlength="300" name="observacao" class="form-control"></textarea>
-            </div>
-
-        </div>
-    </fieldset>
-    <div class="form-group container row">
-        <button type="submit" class="btn btn-dark mr-3"><span class=""></span>Adicionar</button>
-        <a type="button" class="btn btn-dark" href="Carteira" ,"Home">Voltar</a>
-
-    </div>
 
 
-</form>
+    </form>
 

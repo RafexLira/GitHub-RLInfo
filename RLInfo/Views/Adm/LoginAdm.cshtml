@@ -2,9 +2,12 @@
 @{
     ViewBag.Title = "LoginAdm";
 }
+    <h3 class="text-left">ADM</h3>
 <div class="row">
 <div class="col-4 w-auto"></div>
 <div class="col-sm-4 col-md-4 col-lg-4">
+
+    
 
 @using (Html.BeginForm("LoginAdm", "Adm", FormMethod.Post)) { 
 
@@ -13,12 +16,12 @@
         <div class="form-group row col">
 
             @Html.LabelFor(x => x.Nome, new { @class="p-1 m-1" })
-            @Html.EditorFor(x => x.Nome, new { htmlAttributes = new { @class = "form-control", pattern = "[A-Za-z]{4,30}" } })
+            @Html.EditorFor(x => x.Nome, new { htmlAttributes = new {maxlength="15", @class = "form-control", pattern = "[A-Za-z]{4,30}"} })
             <br />
             <br />
 
             @Html.LabelFor(x => x.Senha, new { @class="p-1 m-1" })
-            @Html.EditorFor(x => x.Senha, new { htmlAttributes = new { @class = "form-control", pattern = "[A-Za-z][0-9]+${4,30}", type = "Password" } })
+            @Html.EditorFor(x => x.Senha, new { htmlAttributes = new { maxlength="15", @class = "form-control", pattern = "[A-Za-z][0-9]+${4,30}", type = "Password" } })
 
             <br />
             <br />
