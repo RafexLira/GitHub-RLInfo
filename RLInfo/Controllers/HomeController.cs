@@ -14,9 +14,12 @@ namespace RLInfo.Controllers
         Contexto ctx = new Contexto();
 
         //AINDA FALTA:
+
+            //adicionar tabela de procurar todos
+           // fazer novos testes ao buscar usuario
+           //
         
-        // adicionar campo e-mail e testar crud home
-       
+        // adicionar campo e-mail e testar crud home       
 
         // verificar duplicidade nos registros e chaves no banco
        
@@ -48,6 +51,7 @@ namespace RLInfo.Controllers
 
         public ActionResult Index()
         {
+            Session["UsuarioLogado"] = null;
             return View();
         }
         [HttpPost]
@@ -149,8 +153,9 @@ namespace RLInfo.Controllers
             }
             else
             {
-                MessageBox.Show("Error", "Atenção");
-                return View();
+                MessageBox.Show("É necessário logar", "Atenção");
+                Session["UsuarioLogado"] = null;
+                return View("Index");
             }
         }
 

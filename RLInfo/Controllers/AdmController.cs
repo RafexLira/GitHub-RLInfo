@@ -160,6 +160,8 @@ namespace RLInfo.Controllers
         {
             if (Session["AdmLogado"] != null)
             {
+                // ViewBag.Todos = "";
+                ViewBag.Todos = ctx.Usuarios;
                 return View();
             }
             else
@@ -169,13 +171,13 @@ namespace RLInfo.Controllers
 
         }
         [HttpPost]
-        public ActionResult UsuarioAdm(Usuario usuario, string Button, string nomex)
+        public ActionResult UsuarioAdm(Usuario usuario, string Button, string nomex, string RGX)
         {
            
-            if (usuario.Nome == null && usuario.RG == null && Button == null)
+            if (usuario.Nome == null && usuario.RG == null && Button == null && RGX == null)
             {
                 MessageBox.Show("Preencha um dos campos", "Atenção!");
-                return View();
+                return View(ViewBag.Todos = ctx.Usuarios);
                 
             }
 
@@ -197,6 +199,12 @@ namespace RLInfo.Controllers
                 case "Sair":
                     Session["AdmLogado"]=null;
                     return RedirectToAction("LoginAdm");
+
+                case "Listar":
+                   
+                    ViewBag.Todos = ctx.Usuarios;
+                    return View();
+                    
             }
 
             try
@@ -206,6 +214,7 @@ namespace RLInfo.Controllers
                     var x = ctx.Usuarios.First(a => a.Nome == usuario.Nome);
                     if (usuario.Nome.ToUpper() == x.Nome)
                     {
+                        ViewBag.Todos = ctx.Usuarios;
                         ViewData["Nome"] = x.Nome;
                         ViewData["RG"] = x.RG;
                         ViewData["Email"] = x.Email;
@@ -218,6 +227,7 @@ namespace RLInfo.Controllers
                     var y = ctx.Usuarios.First(b => b.RG == usuario.RG);
                     if (usuario.RG == y.RG)
                     {
+                        ViewBag.Todos = ctx.Usuarios;
                         ViewData["Nome"] = y.Nome;
                         ViewData["RG"] = y.RG;
                         ViewData["Email"] = y.Email;
@@ -225,10 +235,18 @@ namespace RLInfo.Controllers
 
                     }
                 }
+                if (RGX != null)
+                {
+                    var z = ctx.Usuarios.First(d => d.RG == RGX);
+                    return RedirectToAction("EditarUsuario", z);
+
+                }
+              
                 if (usuario.Nome != null && usuario.RG != null)
                 {
                     MessageBox.Show("Preencha apenas 1 campo", "Atenção!");
                 }
+             
 
             }
             catch
