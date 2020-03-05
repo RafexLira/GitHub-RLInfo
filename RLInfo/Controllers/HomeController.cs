@@ -15,13 +15,12 @@ namespace RLInfo.Controllers
 
         //AINDA FALTA:
 
-            //adicionar tabela de procurar todos
-           // fazer novos testes ao buscar usuario
-           //
+            //implementar a tabela de procurar todos os clientes em "Carteira"
+          
         
         // adicionar campo e-mail e testar crud home       
 
-        // verificar duplicidade nos registros e chaves no banco
+        // verificar duplicidade nos registros e chaves no banco (Adicionar RG e CPF como ID)
        
         // melhorar front end usuariologin e todo o home controller
         // testar crud homecontroller       
@@ -247,7 +246,8 @@ namespace RLInfo.Controllers
         {
             if (Session["UsuarioLogado"] != null)
             {
-                 return View();
+                ViewBag.Clientes = ctx.Clientes;
+                return View();
             }
             else
             {
@@ -259,6 +259,7 @@ namespace RLInfo.Controllers
         {
             var Cli = ctx.Clientes.ToList();
             var Eqp = ctx.Equipamentos.ToList();
+            ViewBag.Clientes = ctx.Clientes.ToList();
 
             try
             {

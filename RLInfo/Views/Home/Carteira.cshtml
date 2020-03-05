@@ -1,4 +1,6 @@
 ﻿@model RLInfo.Models.Cliente
+    @using RLInfo.Models
+    
 <h3 class="text-primary">Clientes</h3>
 <form class="mt-5" method="post" action="Carteira">
     <fieldset class="border border-dark p-2 m-2">
@@ -23,6 +25,33 @@
     </fieldset>
     <!------------------------------------------------------------------------->
     <hr />
+    <div id="lista" style="display:block">
+        <fieldset class="border border-dark p-2 m-2">
+            <legend class="w-auto pl-3 pr-3">Todos os clientes</legend>
+            <div class="row col-12">
+
+                <table class="table">                  
+                    @foreach (Cliente x in ViewBag.Clientes) {
+                        <tr>
+                            <th>Nome</th>
+                            <th>CPF</th>
+                            <th></th>
+                        </tr>
+
+                        <tr id="tr">
+                            <td>@x.Nome</td>
+                            <td>@x.CPF</td>
+                            <td><button class="btn btn-dark" type="submit" name="CPFX">Selecionar</button></td>
+                        </tr>
+                    }
+                </table>
+
+            </div>
+        </fieldset>
+    </div>
+    <!------------------------------------------------------------------------>
+    <hr />
+    
     <fieldset class="border border-dark p-2 m-2">
         <legend class="w-auto pl-3 pr-3">Dados do Cliente</legend>
         <div class="container row">
@@ -89,11 +118,35 @@
     <div>
         <button class="btn btn-dark" name="Button" value="Novo">Novo</button>
         <button class="btn btn-dark" name="Button" value="Editar">Editar</button>
+        <button id="BtnListarTodos" class="btn btn-dark" type="button" onclick="Listar()">Listar Todos</button>
         <button class="btn btn-dark" name="Button" value="Sair">Sair</button>
     </div>
 
 </form>
 
 <hr />
+
+<script type="text/javascript">
+
+
+
+    function Listar() {
+
+        var lista = document.getElementById('lista');
+      
+
+        if (lista.style.display == 'none') {
+
+
+            lista.style.display = 'block';
+            dadosusuario.style.display = 'none';
+            BtnEditar.style.display = 'none';
+            ListarTodos.style.display = 'none';
+            lista.className = 'd-block';
+        }
+
+    }
+
+</script>
 
 

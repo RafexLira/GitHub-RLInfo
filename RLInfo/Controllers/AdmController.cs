@@ -189,7 +189,7 @@ namespace RLInfo.Controllers
                     if (nomex == "")
                     {
                         MessageBox.Show("Não existe cliente para editar", "Atenção!");
-                        return View();
+                        return View(ViewBag.Todos = ctx.Usuarios);
                     }
                     var c = ctx.Usuarios.First(a => a.Nome == nomex.ToUpper());
 
