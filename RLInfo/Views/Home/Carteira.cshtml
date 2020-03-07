@@ -25,7 +25,7 @@
     </fieldset>
     <!------------------------------------------------------------------------->
     <hr />
-    <div id="lista" style="display:block">
+    <div id="lista" style="display:none">
         <fieldset class="border border-dark p-2 m-2">
             <legend class="w-auto pl-3 pr-3">Todos os clientes</legend>
             <div class="row col-12">
@@ -41,7 +41,7 @@
                         <tr id="tr">
                             <td>@x.Nome</td>
                             <td>@x.CPF</td>
-                            <td><button class="btn btn-dark" type="submit" name="CPFX">Selecionar</button></td>
+                            <td><button class="btn btn-dark" type="submit" value="@x.CPF" name="CPFX">Selecionar</button></td>
                         </tr>
                     }
                 </table>
@@ -51,14 +51,14 @@
     </div>
     <!------------------------------------------------------------------------>
     <hr />
-    
+    <div id="DadosDoCliente" >
     <fieldset class="border border-dark p-2 m-2">
         <legend class="w-auto pl-3 pr-3">Dados do Cliente</legend>
         <div class="container row">
 
             <div class="form-group col-3">
                 <label class="text-secondary">Nome </label>
-                <input class="form-control col" type="text" name="nome" maxlength="60" value="@ViewData["Nome"]" readonly />
+                <input id="nome" class="form-control col" type="text" name="nome" maxlength="60" value="@ViewData["Nome"]" readonly />
             </div>
             <div class="form-group col-3">
                 <label class="text-secondary">Endereço</label>
@@ -86,8 +86,10 @@
             </div>
         </div>
     </fieldset>
+        </div>
     <!-------------------------------------------------------------------------->
     <hr />
+    <div id="DadosDoEquipamento"> 
     <fieldset class="border border-dark p-2 m-2">
         <legend class="w-auto pl-3 pr-3">Dados do Equipamento</legend>
         <div class="container row">
@@ -114,10 +116,11 @@
 
         </div>
     </fieldset>
+        </div>
     <!------------------------------------------------------------------------------->
     <div>
         <button class="btn btn-dark" name="Button" value="Novo">Novo</button>
-        <button class="btn btn-dark" name="Button" value="Editar">Editar</button>
+        <button id="BtnEditar" class ="btn btn-dark" name="Button" value="Editar">Editar</button>
         <button id="BtnListarTodos" class="btn btn-dark" type="button" onclick="Listar()">Listar Todos</button>
         <button class="btn btn-dark" name="Button" value="Sair">Sair</button>
     </div>
@@ -128,21 +131,28 @@
 
 <script type="text/javascript">
 
-
-
-    function Listar() {
+ 
+   
+    function Listar()
+    {
 
         var lista = document.getElementById('lista');
+        var DadosDoEquipamento = document.getElementById('DadosDoEquipamento');
+        var DadosDoCliente = document.getElementById('DadosDoCliente');
+        var BtnListarTodos = document.getElementById('BtnListarTodos');
+        var BtnEditar = document.getElementById('BtnEditar');
       
 
         if (lista.style.display == 'none') {
 
 
             lista.style.display = 'block';
-            dadosusuario.style.display = 'none';
+            DadosDoEquipamento.style.display = 'none';
+            DadosDoCliente.style.display = 'none';
             BtnEditar.style.display = 'none';
-            ListarTodos.style.display = 'none';
-            lista.className = 'd-block';
+            BtnListarTodos.style.display = 'none';
+           
+          
         }
 
     }

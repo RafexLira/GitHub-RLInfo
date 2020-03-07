@@ -15,12 +15,14 @@ namespace RLInfo.Controllers
 
         //AINDA FALTA:
 
+            //Alterar View Editar Get para Post ou criar outra view para edição via post
+
             //implementar a tabela de procurar todos os clientes em "Carteira"
           
         
         // adicionar campo e-mail e testar crud home       
 
-        // verificar duplicidade nos registros e chaves no banco (Adicionar RG e CPF como ID)
+        //impedir duplicidade nos registros do banco (Adicionar RG e CPF)
        
         // melhorar front end usuariologin e todo o home controller
         // testar crud homecontroller       
@@ -98,26 +100,7 @@ namespace RLInfo.Controllers
             }
           
         }
-        //[HttpPost]
-        //public ActionResult Novo(long cpf, string nome, string endereco, string bairro, string estado, string cep, string telefone, string observacao, string tipo, string marca, string modelo, string defeito)
-        //{
-
-            
-
-        //        Cliente clienteObj = new Cliente { Id = 1, CPF = cpf, Nome = nome.ToUpper(), Endereco = endereco.ToUpper(), Bairro = bairro.ToUpper(), Estado = estado.ToUpper(), Cep = cep, Telefone = telefone };
-        //        Equipamento equipamentoObj = new Equipamento { Tipo = tipo.ToUpper(), Modelo = modelo.ToUpper(), Marca = marca.ToUpper(), Defeito = defeito.ToUpper(), Observacao = observacao.ToUpper(), ClienteId = 1 };
-
-        //        ctx.Clientes.Add(clienteObj);
-        //        ctx.Equipamentos.Add(equipamentoObj);
-        //        ctx.SaveChanges();
-        //        if (MessageBox.Show("Adicionado com sucesso! Deseja adicionar outro?", "ATENÇÃO", MessageBoxButtons.YesNo) == DialogResult.Yes)
-        //        {
-        //            return View();
-        //        }
-                        
-          
-        //    return RedirectToAction("Carteira");
-        //}
+      
         public ActionResult Editar(int Id)
         {
             if (Session["UsuarioLogado"]!= null && Id != 0)
@@ -245,21 +228,23 @@ namespace RLInfo.Controllers
         public ActionResult Carteira()
         {
             if (Session["UsuarioLogado"] != null)
-            {
+            {  
                 ViewBag.Clientes = ctx.Clientes;
-                return View();
+              
             }
             else
             {
                 return RedirectToAction("Index");
             }
+            return View();
         }
         [HttpPost]
-        public ActionResult Carteira(string Button, string nome, string cliente, long cpf = 0)
+        public ActionResult Carteira(string Button, string cliente, string nome, long CPFX = 0, long cpf = 0)
         {
             var Cli = ctx.Clientes.ToList();
             var Eqp = ctx.Equipamentos.ToList();
             ViewBag.Clientes = ctx.Clientes.ToList();
+
 
             try
             {
@@ -300,12 +285,12 @@ namespace RLInfo.Controllers
                 return View();
             }
 
-            if (cliente == "" && cpf <= 0)
+            if (cliente == "" && cpf <= 0 && CPFX <=0)
             {
                 MessageBox.Show("Um dos campos precisa ser preenchido", "Atenção!");
                 return View();
             }
-            if (cliente != "" && cpf != 0)
+            if (cliente != "" && cpf != 0 && CPFX != 0)
             {
                 MessageBox.Show("Somente um dos campos pode ser preenchido", "Atenção!");
                 return View();
@@ -395,6 +380,11 @@ namespace RLInfo.Controllers
                 }
 
 
+            }
+            else if (CPFX > 0)
+            {
+                var z = ctx.Clientes.First(x => x.CPF == CPFX);
+                return RedirectToAction("Editar", z);
             }
             return View();
 
