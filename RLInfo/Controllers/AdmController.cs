@@ -67,7 +67,14 @@ namespace RLInfo.Controllers
             {
                 return RedirectToAction("UsuarioAdm");
             }
-
+            foreach (var d in ctx.Usuarios)
+            {
+                if (usuario.RG == d.RG)
+                {
+                    MessageBox.Show("Este RG já existe");
+                    return View(usuario);
+                }
+            }
             try
             {
                 ctx.Usuarios.Add(new Usuario { Id = 1, Nome = usuario.Nome.ToUpper(), Email = usuario.Email.ToLower(), RG = usuario.RG, Senha = usuario.Senha });
