@@ -22,7 +22,7 @@ namespace RLInfo.Controllers
         
         // adicionar campo e-mail e testar crud home       
 
-        //impedir duplicidade nos registros do banco (Adicionar RG e CPF)
+        //impedir duplicidade nos registros do banco (Adicionar RG) ADM
        
         // melhorar front end usuariologin e todo o home controller
         // testar crud homecontroller       
@@ -84,21 +84,32 @@ namespace RLInfo.Controllers
         [HttpPost]
         public ActionResult Novo(Cliente cliente, Equipamento equipamento)
         {
-            try
+            foreach (var d in ctx.Clientes)
             {
-                ctx.Clientes.Add( new Cliente { CPF= cliente.CPF, Nome =cliente.Nome.ToUpper(), Endereco= cliente.Endereco.ToUpper(), Telefone = cliente.Telefone, Bairro=cliente.Bairro.ToUpper(), Cep = cliente.Cep, Estado = cliente.Estado.ToUpper(), Observacao="" });
-                ctx.Equipamentos.Add(equipamento);
-                ctx.SaveChanges();
-                MessageBox.Show("Cliente adicionado com sucesso!");
-                return View();
+                if (cliente.CPF == d.CPF)
+                {
+                    MessageBox.Show("Este CPF já existe");
+                    return View();
+                }
             }
-            catch
-            {
-                MessageBox.Show("Erro ao adicionar, verifique todos os campos", "Atenção!");
-              
-                return View();
-            }
-          
+                 try
+                    {
+
+                        ctx.Clientes.Add(new Cliente { CPF = cliente.CPF, Nome = cliente.Nome.ToUpper(), Endereco = cliente.Endereco.ToUpper(), Telefone = cliente.Telefone, Bairro = cliente.Bairro.ToUpper(), Cep = cliente.Cep, Estado = cliente.Estado.ToUpper(), Observacao = "" });
+                        ctx.Equipamentos.Add(equipamento);
+                        ctx.SaveChanges();
+                        MessageBox.Show("Cliente adicionado com sucesso!");
+                      
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Erro ao adicionar, verifique todos os campos", "Atenção!");
+
+                       
+                    }
+
+            return View();
+
         }
       
         public ActionResult Editar(int Id)
