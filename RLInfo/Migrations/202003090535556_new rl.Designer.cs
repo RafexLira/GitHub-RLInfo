@@ -7,13 +7,13 @@ namespace RLInfo.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class rlinformig : IMigrationMetadata
+    public sealed partial class newrl : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(rlinformig));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(newrl));
         
         string IMigrationMetadata.Id
         {
-            get { return "202002101858253_rlinformig"; }
+            get { return "202003090535556_new rl"; }
         }
         
         string IMigrationMetadata.Source

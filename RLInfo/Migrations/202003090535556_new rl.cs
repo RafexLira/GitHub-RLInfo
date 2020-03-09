@@ -3,7 +3,7 @@ namespace RLInfo.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class rlinformig : DbMigration
+    public partial class newrl : DbMigration
     {
         public override void Up()
         {
@@ -25,6 +25,7 @@ namespace RLInfo.Migrations
                     {
                         Id = c.Int(nullable: false, identity: true),
                         CPF = c.Long(nullable: false),
+                        Email = c.String(maxLength: 120),
                         Nome = c.String(nullable: false, maxLength: 60),
                         Telefone = c.String(nullable: false, maxLength: 60),
                         Endereco = c.String(maxLength: 120),

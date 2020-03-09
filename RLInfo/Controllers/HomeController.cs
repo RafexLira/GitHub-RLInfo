@@ -32,6 +32,7 @@ namespace RLInfo.Controllers
             ViewData["Bairro"] = "";
             ViewData["Cep"] = "";
             ViewData["Estado"] = "";
+            ViewData["Email"] = "";
             ViewData["Observacao"] = "";
             ViewData["CPF"] = "";
             ViewData["Tipo"] = "";
@@ -86,7 +87,7 @@ namespace RLInfo.Controllers
                  try
                     {
 
-                        ctx.Clientes.Add(new Cliente { CPF = cliente.CPF, Nome = cliente.Nome.ToUpper(), Endereco = cliente.Endereco.ToUpper(), Telefone = cliente.Telefone, Bairro = cliente.Bairro.ToUpper(), Cep = cliente.Cep, Estado = cliente.Estado.ToUpper(), Observacao = "" });
+                        ctx.Clientes.Add(new Cliente { CPF = cliente.CPF, Nome = cliente.Nome.ToUpper(), Endereco = cliente.Endereco.ToUpper(), Telefone = cliente.Telefone, Bairro = cliente.Bairro.ToUpper(), Cep = cliente.Cep, Estado = cliente.Estado.ToUpper(), Email = cliente.Email.ToLower(), Observacao = "" });
                         ctx.Equipamentos.Add(equipamento);
                         ctx.SaveChanges();
                         MessageBox.Show("Cliente adicionado com sucesso!");
@@ -120,6 +121,7 @@ namespace RLInfo.Controllers
                         ViewData["Cep"] = Cliente.Cep;
                         ViewData["Estado"] = Cliente.Estado;
                         ViewData["Observacao"] = Cliente.Observacao;
+                        ViewData["Email"] = Cliente.Email;
                         ViewData["CPF"] = Cliente.CPF;
 
                         ViewData["Tipo"] = Equipamento.Tipo;
@@ -142,7 +144,7 @@ namespace RLInfo.Controllers
         }
 
         [HttpPost]
-        public ActionResult Editar(string Menu, string cliente, string nome, string nomex, string endereco, string bairro, string estado, string cep, string telefone, string observacao, string tipo, string marca, string modelo, string defeito, long cpf)
+        public ActionResult Editar(string Menu, string cliente, string email, string nome, string nomex, string endereco, string bairro, string estado, string cep, string telefone, string observacao, string tipo, string marca, string modelo, string defeito, long cpf)
         {
             var Cli = ctx.Clientes.ToList();
             var Eqp = ctx.Equipamentos.ToList();
@@ -173,6 +175,7 @@ namespace RLInfo.Controllers
                     ClienteX.Estado = estado.ToUpper();
                     ClienteX.Cep = cep.ToUpper();
                     ClienteX.Telefone = telefone.ToUpper();
+                    ClienteX.Email = email.ToLower();
 
                     EquipamentoX.Marca = marca.ToUpper();
                     EquipamentoX.Tipo = tipo.ToUpper();
@@ -239,7 +242,7 @@ namespace RLInfo.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Carteira(string Button, string cliente, string nome, long CPFX = 0, long cpf = 0)
+        public ActionResult Carteira(string Button, string cliente, string email, string nome, long CPFX = 0, long cpf = 0)
         {
             var Cli = ctx.Clientes.ToList();
             var Eqp = ctx.Equipamentos.ToList();
@@ -320,6 +323,7 @@ namespace RLInfo.Controllers
                         ViewData["Cep"] = x.Cep;
                         ViewData["Estado"] = x.Estado;
                         ViewData["Observacao"] = x.Observacao;
+                        ViewData["Email"] = x.Email;
                         ViewData["CPF"] = x.CPF;
                         return View();
                     }
@@ -363,6 +367,7 @@ namespace RLInfo.Controllers
                         ViewData["Cep"] = x.Cep;
                         ViewData["Estado"] = x.Estado;
                         ViewData["Observacao"] = x.Observacao;
+                        ViewData["Email"] = x.Email;
                         ViewData["CPF"] = x.CPF;
                         return View();
                     }

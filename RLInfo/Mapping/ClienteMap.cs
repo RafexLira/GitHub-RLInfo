@@ -20,6 +20,7 @@ namespace RLInfo.Mapping
             Property(x => x.Bairro).HasMaxLength(120);          
             Property(x => x.Cep).HasMaxLength(120);
             Property(x => x.Estado).HasMaxLength(120);
+            Property(x => x.Email).HasMaxLength(120);
             Property(x => x.Observacao).HasMaxLength(600);
 
         }
