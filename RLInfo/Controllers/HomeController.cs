@@ -16,17 +16,8 @@ namespace RLInfo.Controllers
         //AINDA FALTA:
 
             //Alterar View Editar Get para Post ou criar outra view para edição via post
-
-            //implementar a tabela de procurar todos os clientes em "Carteira"
-          
-        
-        // adicionar campo e-mail e testar crud home       
-
-        //impedir duplicidade nos registros do banco (Adicionar RG) ADM
-       
-        // melhorar front end usuariologin e todo o home controller
-        // testar crud homecontroller       
-      
+            //Adicionar campo email ao cliente
+            // implementar melhoria front
       
       public void Sair()
         {
@@ -73,7 +64,7 @@ namespace RLInfo.Controllers
             return View(usu);
 
         }
-        public ActionResult Novo()
+        public ActionResult Novo(Cliente cliente)
         {
             if (Session["UsuarioLogado"] != null)
             {
@@ -103,9 +94,7 @@ namespace RLInfo.Controllers
                     }
                     catch
                     {
-                        MessageBox.Show("Erro ao adicionar, verifique todos os campos", "Atenção!");
-
-                       
+                        MessageBox.Show("Erro ao adicionar, verifique todos os campos", "Atenção!");                       
                     }
 
             return View();
