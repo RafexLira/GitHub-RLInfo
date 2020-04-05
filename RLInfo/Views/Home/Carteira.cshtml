@@ -1,6 +1,6 @@
 ﻿@model RLInfo.Models.Cliente
-    @using RLInfo.Models
-    
+@using RLInfo.Models
+
 <h3 class="text-primary">Clientes</h3>
 <form class="mt-5" method="post" action="Carteira">
     <fieldset class="border border-dark p-2 m-2">
@@ -10,7 +10,7 @@
                 <label>Cliente</label>
             </div>
             <div class="form-group col-4">
-                <input class="form-control col" type="text" name="cliente" maxlength="60" pattern="[A-Za-z\s]{4,60}" />
+                <input class="form-control col" type="text" name="cliente" maxlength="60" pattern="[A-Za-z\s]{2,60}" />
             </div>
             <div class="form-group col">
                 <label>CPF</label>
@@ -30,8 +30,9 @@
             <legend class="w-auto pl-3 pr-3">Todos os clientes</legend>
             <div class="row col-12">
 
-                <table class="table">                  
-                    @foreach (Cliente x in ViewBag.Clientes) {
+                <table class="table">
+                    @foreach (Cliente x in ViewBag.Clientes)
+                    {
                         <tr>
                             <th>Nome</th>
                             <th>CPF</th>
@@ -50,80 +51,114 @@
     </div>
     <!------------------------------------------------------------------------>
     <hr />
-    <div id="DadosDoCliente" >
-    <fieldset class="border border-dark p-2 m-2">
-        <legend class="w-auto pl-3 pr-3">Dados do Cliente</legend>
-        <div class="container row">
+    <div id="DadosDoCliente">
+        <fieldset class="border border-dark p-2 m-2">
+            <legend class="w-auto pl-3 pr-3">Dados do Cliente</legend>
+            <div class="container row">
 
-            <div class="form-group col-3">
-                <label class="text-secondary">Nome </label>
-                <input id="nome" class="form-control col" type="text" name="nome" maxlength="60" value="@ViewData["Nome"]" readonly />
+                <div class="form-group col-3">
+                    <label><b>Nome</b></label>
+                    <input id="nome" class="form-control col text-secondary" type="text" name="nome" maxlength="60" value="@ViewData["Nome"]" readonly />
+                </div>
+                <div class="form-group col-3">
+                    <label class="pr-2"><b>Endereço</b></label><br />
+                    <label class="text-secondary"><b>@ViewData["Endereco"]</b></label>
+                </div>
+                <div class="form-group col-3">
+                    <label class="pr-2"><b>Bairro</b></label><br />
+                    <label class="text-secondary"><b>@ViewData["Bairro"]</b></label>
+                </div>
+                <div class="form-group col-3">
+                    <label class="pr-2"><b>Estado</b></label><br />
+                    <label class="text-secondary"><b>@ViewData["Estado"]</b></label>
+                </div>
+                <div class="form-group col-3">
+                    <label class="pr-2"><b>Cep</b></label><br />
+                    <label class="text-secondary"><b>@ViewData["Cep"]</b></label>
+                </div>
+                <div class="form-group col-3">
+                    <label class="pr-2"><b>Telefone</b></label><br />
+                    <label class="text-secondary"><b>@ViewData["Telefone"]</b></label>
+                </div>
+                <div class="form-group col-3">
+                    <label class="pr-2"><b>Email</b></label><br />
+                    <label class="text-secondary"><b>@ViewData["Email"]</b></label>
+                </div>
+                <div class="form-group col-3">
+                    <label class="pr-2"><b>CPF</b></label><br />
+                    <label class="text-secondary"><b>@ViewData["CPF"]</b></label>
+                </div>
             </div>
-            <div class="form-group col-3">
-                <label class="text-secondary">Endereço</label>
-                <input class="form-control col" type="text" name="endereco" maxlength="60" value="@ViewData["Endereco"]" readonly />
-            </div>
-            <div class="form-group col-3">
-                <label class="text-secondary">Bairro </label>
-                <input class="form-control col" type="text" name="bairro" maxlength="60" value="@ViewData["Bairro"]" readonly />
-            </div>
-            <div class="form-group col-3">
-                <label class="text-secondary">Estado</label>
-                <input class="form-control col" type="text" name="estado" maxlength="60" value="@ViewData["Estado"]" readonly />
-            </div>
-            <div class="form-group col-3">
-                <label class="text-secondary">Cep </label>
-                <input class="form-control col" type="text" name="cep" maxlength="60" value="@ViewData["Cep"]" readonly />
-            </div>
-            <div class="form-group col-3">
-                <label class="text-secondary">Telefone </label>
-                <input class="form-control col" type="text" name="telefone" maxlength="60" value="@ViewData["Telefone"]" readonly />
-            </div>
-            <div class="form-group col-3">
-                <label class="text-secondary">Email</label>
-                <input class="form-control col" type="email" name="email" maxlength="60" value="@ViewData["Email"]" readonly />
-            </div>
-            <div class="form-group col-3">
-                <label class="text-secondary">CPF </label>
-                <input class="form-control col" type="text" name="cpf" maxlength="13" minlength="9" value="@ViewData["CPF"]" readonly pattern="[0-9]+$" />
-            </div>
-        </div>
-    </fieldset>
-        </div>
+
+
+        </fieldset>
+    </div>
     <!-------------------------------------------------------------------------->
     <hr />
-    <div id="DadosDoEquipamento"> 
-    <fieldset class="border border-dark p-2 m-2">
-        <legend class="w-auto pl-3 pr-3">Dados do Equipamento</legend>
-        <div class="container row">
-            <div class="form-group col-3">
-                <label class="text-secondary">Modelo</label>
-                <input class="form-control col" type="text" name="modelo" maxlength="60" value="@ViewData["Modelo"]" readonly />
-            </div>
-            <div class="form-group col-3">
-                <label class="text-secondary">Marca </label>
-                <input class="form-control col" type="text" name="marca" maxlength="60" value="@ViewData["Marca"]" readonly />
-            </div>
-            <div class="form-group col-3">
-                <label class="text-secondary">Defeito</label>
-                <input class="form-control col" type="text" name="Defeito" maxlength="60" value="@ViewData["Defeito"]" readonly />
-            </div>
-            <div class="form-group col-3">
-                <label class="text-secondary"> Tipo</label>
-                <input class="form-control col" type="text" name="tipo" maxlength="60" value="@ViewData["Tipo"]" readonly />
-            </div>
-            <div class="form-group col-6">
-                <label class="text-secondary"> Observação </label>
-                <textarea type="text" rows="5" cols="5" name="observacao" class="form-control" readonly> @ViewData["ObservacaoY"]</textarea>
-            </div>
+    <div id="DadosDoEquipamento">
+        @foreach (var x in ViewBag.Equipamentos)
+            {
+                <fieldset class="border border-dark p-2 m-2">
+                    <legend class="w-auto pl-3 pr-3">Equipamento</legend>
+                    <div class="container row">
 
-        </div>
-    </fieldset>
-        </div>
+                        <div class="form-group col-3">
+                            <label class="pr-2"><b>OS</b></label>
+                            <label class="text-danger"><b>@x.NumeroOS</b></label>
+                        </div>
+                        <div class="form-group col-3">
+                            <label class="pr-2"><b>Data de entrada/Hora</b></label>
+                            <label class="text-secondary"><b>@x.Date</b></label>
+                        </div>
+                        <div class="form-group col-3">
+                            <label class="pr-2"><b>Modelo</b></label><br />
+                            <label class="text-secondary"><b>@x.Modelo</b></label>
+                        </div>
+                        <div class="form-group col-3">
+                            <label class="pr-2"><b>Marca</b></label><br>
+                            <label class="text-secondary"><b>@x.Marca</b></label>
+                        </div>
+                        <div class="form-group col-3">
+                            <label class="pr-2"><b>Defeito</b></label><br />
+                            <label class="text-secondary"><b>@x.Defeito</b></label>
+                        </div>
+                        <div class="form-group col-3">
+                            <label class="pr-2"><b>Tipo</b></label><br />
+                            <label class="text-secondary"><b>@x.Tipo</b></label>
+                        </div>
+                        <div class="form-group col-6">
+                            <label class="pr-2"><b>Observação</b></label><br />
+                            <label class="text-secondary"><b>@x.Observacao</b></label>
+                        </div>
+                        <div class="form-group col-6">
+                            <label class="pr-2"><b>Status</b></label><br />
+                            <label class="text-secondary"><b>@x.Status</b></label>
+                        </div>
+                        <div class="form-group col-6">
+                            <label class="pr-2"><b>Data/ Hora</b></label><br />
+                            <label class="text-secondary"><b>@x.Date</b></label>
+                        </div>
+                        <div class="form-group col-6">
+                            <label class="pr-2"><b>Valor</b></label><br />
+                            <label class="text-secondary"><b>@x.Preco</b></label>
+                        </div>
+                        <div class="form-group col-6">
+                            <label class="pr-2"><b>Situação</b></label><br />
+                            <label class="text-secondary"><b>@x.Situacao</b></label>
+                        </div>
+
+                    </div>
+                </fieldset>
+            }
+    </div>
+   
+ 
     <!------------------------------------------------------------------------------->
     <div>
-        <button class="btn btn-dark" name="Button" value="Novo">Novo</button>
-        <button id="BtnEditar" class ="btn btn-dark" name="Button" value="Editar">Editar</button>
+        <button class="btn btn-dark" name="Button" value="Novo">Novo Cliente</button>
+        @*@Html.ActionLink("Novo Equipamento", "NovoEquipamento", "Home")*@
+        <a type="button" class="btn btn-dark" href="NovoEquipamento" ,"Home">Novo Equipamento</a>
+        <button id="BtnEditar" class="btn btn-dark" name="Button" value="Editar">Editar</button>
         <button id="BtnListarTodos" class="btn btn-dark" type="button" onclick="Listar()">Listar Todos</button>
         <button class="btn btn-dark" name="Button" value="Sair">Sair</button>
     </div>
@@ -134,17 +169,16 @@
 
 <script type="text/javascript">
 
- 
-   
-    function Listar()
-    {
+
+
+    function Listar() {
 
         var lista = document.getElementById('lista');
         var DadosDoEquipamento = document.getElementById('DadosDoEquipamento');
         var DadosDoCliente = document.getElementById('DadosDoCliente');
         var BtnListarTodos = document.getElementById('BtnListarTodos');
         var BtnEditar = document.getElementById('BtnEditar');
-      
+
 
         if (lista.style.display == 'none') {
 
@@ -154,8 +188,8 @@
             DadosDoCliente.style.display = 'none';
             BtnEditar.style.display = 'none';
             BtnListarTodos.style.display = 'none';
-           
-          
+
+
         }
 
     }

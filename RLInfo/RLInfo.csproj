@@ -142,9 +142,21 @@
     <Compile Include="Mapping\ClienteMap.cs" />
     <Compile Include="Mapping\EquipamentoMap.cs" />
     <Compile Include="Mapping\UsuarioMap.cs" />
-    <Compile Include="Migrations\202003090535556_new rl.cs" />
-    <Compile Include="Migrations\202003090535556_new rl.Designer.cs">
-      <DependentUpon>202003090535556_new rl.cs</DependentUpon>
+    <Compile Include="Migrations\202003270250349_new.cs" />
+    <Compile Include="Migrations\202003270250349_new.Designer.cs">
+      <DependentUpon>202003270250349_new.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003270416246_new2.cs" />
+    <Compile Include="Migrations\202003270416246_new2.Designer.cs">
+      <DependentUpon>202003270416246_new2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003310253310_new21.cs" />
+    <Compile Include="Migrations\202003310253310_new21.Designer.cs">
+      <DependentUpon>202003310253310_new21.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004050355024_new3.cs" />
+    <Compile Include="Migrations\202004050355024_new3.Designer.cs">
+      <DependentUpon>202004050355024_new3.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Adm.cs" />
@@ -195,6 +207,7 @@
     <Content Include="fonts\fontawesome-webfont.woff" />
     <Content Include="fonts\fontawesome-webfont.ttf" />
     <Content Include="fonts\fontawesome-webfont.eot" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -307,9 +320,11 @@
     <Content Include="Views\Adm\LoginAdm.cshtml" />
     <Content Include="Views\Adm\NovoUsuario.cshtml" />
     <Content Include="Views\Adm\EditarUsuario.cshtml" />
+    <Content Include="Views\Home\NovoEquipamento.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Message\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -323,8 +338,17 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202003090535556_new rl.resx">
-      <DependentUpon>202003090535556_new rl.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202003270250349_new.resx">
+      <DependentUpon>202003270250349_new.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003270416246_new2.resx">
+      <DependentUpon>202003270416246_new2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003310253310_new21.resx">
+      <DependentUpon>202003310253310_new21.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004050355024_new3.resx">
+      <DependentUpon>202004050355024_new3.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

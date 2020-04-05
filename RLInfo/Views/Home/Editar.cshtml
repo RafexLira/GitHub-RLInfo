@@ -12,7 +12,7 @@
             </div>
             <div class="form-group col-3">
                 <label class="text-secondary">Nome </label>
-                <input class="form-control col" type="text" name="nomex" maxlength="60" value="@ViewData["Nome"]" pattern="[A-Za-z\s]{4,60}" />
+                <input class="form-control col" type="text" name="nomex" maxlength="60" value="@ViewData["Nome"]" pattern="[A-Za-z\s]{2,60}" />
             </div>
             <div class="form-group col-3">
                 <label class="text-secondary">Endereço</label>
@@ -47,38 +47,91 @@
     </fieldset>
     <!-------------------------------------------------------------------------->
     <hr />
-    <fieldset class="border border-dark p-2 m-2 ">
-        <legend class="w-auto pl-3 pr-3">Dados do Equipamento</legend>
-        <div class="container row">
-            <div class="form-group col-3">
-                <label class="text-secondary">Modelo</label>
-                <input class="form-control col" type="text" name="modelo" maxlength="60" value="@ViewData["Modelo"]" />
-            </div>
-            <div class="form-group col-3">
-                <label class="text-secondary">Marca </label>
-                <input class="form-control col" type="text" name="marca" maxlength="60" value="@ViewData["Marca"]" />
-            </div>
-            <div class="form-group col-3">
-                <label class="text-secondary">Defeito</label>
-                <input class="form-control col" type="text" name="defeito" maxlength="60" value="@ViewData["Defeito"]" />
-            </div>
-            <div class="form-group col-3">
-                <label class="text-secondary"> Tipo</label>
-                <input class="form-control col" type="text" name="tipo" maxlength="60" value="@ViewData["Tipo"]" />
-            </div>
-            <div class="form-group col-6">
-                <label class="text-secondary"> Observação </label>
-                <textarea type="text" rows="5" cols="5" maxlength="300" name="observacao" class="form-control"> @ViewData["ObservacaoY"]</textarea>
-            </div>
+    @foreach (var x in ViewBag.Equipamentos)
+    {
 
-        </div>
-    </fieldset>
+
+        <fieldset class="border border-dark p-2 m-2 ">
+            <legend class="w-auto pl-3 pr-3">Dados do Equipamento</legend>
+            <div class="container row">
+                <div class="form-group col-3">
+                    <label class="pr-2 text-danger"><b>Número OS</b></label>
+                    <label class="text-secondary"><b></b>@x.NumeroOS</label>
+                </div>
+                <div class="form-group col-3">
+                    <label class="pr-2"><b>Data/ Hora</b></label>
+                    <label class="text-secondary"><b>@x.Date</b></label>
+                </div>
+                <div class="form-group col-3">
+                    <label class="text-secondary">Modelo</label>
+                    <input class="form-control col" type="text" name="modelo" maxlength="60" value="@x.Modelo" />
+                </div>
+                <div class="form-group col-3">
+                    <label class="text-secondary">Marca </label>
+                    <input class="form-control col" type="text" name="marca" maxlength="60" value="@x.Marca" />
+                </div>
+                <div class="form-group col-3">
+                    <label class="text-secondary">Defeito</label>
+                    <input class="form-control col" type="text" name="defeito" maxlength="60" value="@x.Defeito" />
+                </div>
+                <div class="form-group col-3">
+                    <label class="text-secondary"> Tipo</label>
+                    <input class="form-control col" type="text" name="tipo" maxlength="60" value="@x.Tipo" />
+                </div>
+                <div class="form-group col-6">
+                    <label class="text-secondary"> Observação </label>
+                    <textarea type="text" rows="5" cols="5" maxlength="300" name="observacao" class="form-control"> @x.Observacao</textarea>
+                </div>
+                <div class="form-group col-3">
+                    <label class="text-secondary">Preço do Serviço</label>
+                    <input class="form-control col" type="text" name="preco" maxlength="7" value="@x.Preco" />
+                </div>
+                <div class="form-group col-3">
+                    <label class="text-secondary">Status</label>
+                    <input class="form-control col" type="text" name="Status" maxlength="7" value="@x.Status" />
+                </div>
+                <div class="form-group col-3">
+                    <label class="text-secondary">Situação</label>
+                    <input class="form-control col" type="text" name="Situacao" maxlength="7" value="@x.Situacao" />
+                </div>
+            </div>
+</fieldset>
+    }
+    @*<fieldset class="border border-dark p-2 m-2 ">
+            <legend class="w-auto pl-3 pr-3">Dados do Equipamento</legend>
+            <div class="container row">
+                <div class="form-group col-3">
+                    <label class="text-secondary">Modelo</label>
+                    <input class="form-control col" type="text" name="modelo" maxlength="60" value="@ViewData["Modelo"]" />
+                </div>
+                <div class="form-group col-3">
+                    <label class="text-secondary">Marca </label>
+                    <input class="form-control col" type="text" name="marca" maxlength="60" value="@ViewData["Marca"]" />
+                </div>
+                <div class="form-group col-3">
+                    <label class="text-secondary">Defeito</label>
+                    <input class="form-control col" type="text" name="defeito" maxlength="60" value="@ViewData["Defeito"]" />
+                </div>
+                <div class="form-group col-3">
+                    <label class="text-secondary"> Tipo</label>
+                    <input class="form-control col" type="text" name="tipo" maxlength="60" value="@ViewData["Tipo"]" />
+                </div>
+                <div class="form-group col-6">
+                    <label class="text-secondary"> Observação </label>
+                    <textarea type="text" rows="5" cols="5" maxlength="300" name="observacao" class="form-control"> @ViewData["ObservacaoY"]</textarea>
+                </div>
+                <div class="form-group col-3">
+                    <label class="text-secondary">Preço do Serviço</label>
+                    <input class="form-control col" type="text" name="preco" maxlength="7" value="@ViewData["Preco"]" />
+                </div>
+            </div>
+        </fieldset>*@
     <!------------------------------------------------------------------------------->
     <hr />
     <div class="form-group container row">
         <button type="submit" name="Menu" value="Atualizar" class="btn btn-dark mr-3">Salvar</button>
         <button type="submit" name="Menu" value="Delete" class="btn btn-dark mr-3">Deletar</button>
-        <button type="submit" class="btn btn-dark mr-3" onclick="location.href='@Url.Action("Carteira", "Home")'">Voltar</button>       
+        <button type="submit" class="btn btn-dark mr-3" onclick="location.href='@Url.Action("Carteira", "Home")'">Voltar</button>
     </div>
 
 </form>

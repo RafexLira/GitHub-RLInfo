@@ -15,7 +15,7 @@ namespace RLInfo.Infra
         public DbSet<Usuario> Usuarios { get; set; }
         public DbSet<Adm> Adms { get; set; }
 
-        public Contexto() : base("RLInfoConnection")
+        public Contexto() : base("rlinfoconnection")
         {
             // Database.SetInitializer<RafaelCadastroContext>(new DataContextInitialize());
         }

@@ -6,6 +6,8 @@ using System.Web.Mvc;
 using RLInfo.Models;
 using RLInfo.Infra;
 using System.Windows.Forms;
+using System.Globalization;
+
 
 namespace RLInfo.Controllers
 {
@@ -15,11 +17,16 @@ namespace RLInfo.Controllers
 
         //AINDA FALTA:
 
-            //Alterar View Editar Get para Post ou criar outra view para edição via post
-            //Adicionar campo email ao cliente
-            // implementar melhoria front
-      
-      public void Sair()
+        //verificar validacao de todos os campos e acertar coerencia 
+        //implementar adicionar peças e somar preços 
+        //implementar imprimir OS
+        //implementar dados da empresa
+        //implementar adicionar mais equipamentos ou atendimentos com o mesmo cpf
+        //Alterar View Editar Get para Post ou criar outra view para edição 
+        //via post afim de esconder dados do cliente
+        // implementar melhoria front
+
+        public void Sair()
         {
             Session["UsuarioLogado"] = null;
             RedirectToAction("Index");
@@ -50,22 +57,23 @@ namespace RLInfo.Controllers
         [HttpPost]
         public ActionResult Index(Usuario usu)
         {
-         
+
             var login = ctx.Usuarios;
             foreach (var usuario in login)
             {
                 if (usu.Nome.ToUpper() == usuario.Nome.ToUpper() && usu.Senha == usuario.Senha)
                 {
-                    Session["UsuarioLogado"] = usu.Nome.ToUpper();                 
+                    Session["UsuarioLogado"] = usu.Nome.ToUpper();
                     return RedirectToAction("Carteira");
                 }
-               
+
             }
+
             MessageBox.Show("Usuário e/ou senha inválidos", "Atenção!");
             return View(usu);
 
         }
-        public ActionResult Novo(Cliente cliente)
+        public ActionResult Novo()
         {
             if (Session["UsuarioLogado"] != null)
             {
@@ -74,44 +82,95 @@ namespace RLInfo.Controllers
             return RedirectToAction("Index");
         }
         [HttpPost]
-        public ActionResult Novo(Cliente cliente, Equipamento equipamento)
+        public ActionResult Novo(Cliente cliente)
         {
             foreach (var d in ctx.Clientes)
             {
                 if (cliente.CPF == d.CPF)
                 {
                     MessageBox.Show("Este CPF já existe");
-                    return View();
+                    return RedirectToAction("Novo");
                 }
             }
-                 try
-                    {
-
-                        ctx.Clientes.Add(new Cliente { CPF = cliente.CPF, Nome = cliente.Nome.ToUpper(), Endereco = cliente.Endereco.ToUpper(), Telefone = cliente.Telefone, Bairro = cliente.Bairro.ToUpper(), Cep = cliente.Cep, Estado = cliente.Estado.ToUpper(), Email = cliente.Email.ToLower(), Observacao = "" });
-                        ctx.Equipamentos.Add(equipamento);
-                        ctx.SaveChanges();
-                        MessageBox.Show("Cliente adicionado com sucesso!");
-                      
-                    }
-                    catch
-                    {
-                        MessageBox.Show("Erro ao adicionar, verifique todos os campos", "Atenção!");                       
-                    }
+            try
+            {
+                ctx.Clientes.Add(new Cliente { CPF = cliente.CPF, Nome = cliente.Nome.ToUpper(), Endereco = cliente.Endereco.ToUpper(), Telefone = cliente.Telefone, Bairro = cliente.Bairro.ToUpper(), Cep = cliente.Cep, Estado = cliente.Estado.ToUpper(), Email = cliente.Email.ToLower(), Observacao = "" });
+                ctx.SaveChanges();
+                MessageBox.Show("Cliente adicionado com sucesso!", "Sucesso!");
+            }
+            catch
+            {
+                MessageBox.Show("Erro ao adicionar, verifique todos os campos", "Atenção!");
+            }
 
             return View();
 
         }
-      
+
+        public ActionResult NovoEquipamento()
+        {
+            if (Session["UsuarioLogado"] != null)
+            {
+                ViewBag.Clientes = ctx.Clientes.ToList();
+
+            }
+            else
+            {
+                return RedirectToAction("Index");
+            }
+            return View();
+
+        }
+        [HttpPost]
+        public ActionResult NovoEquipamento(Equipamento equipamento, long CPF)
+        {
+            Random random = new Random();
+            for (int i = 0; i <= 100; i++)
+            {
+
+                var NumeroOs = random.Next();
+                equipamento.NumeroOS = NumeroOs.ToString();
+
+            }
+
+            var date = DateTime.Now;
+            equipamento.Date = date;
+
+            try
+            {
+               
+                var c = ctx.Clientes.First(x => x.CPF == CPF);
+                equipamento.ClienteId = c.Id;
+             
+
+                ctx.Equipamentos.Add(equipamento);
+
+                ctx.SaveChanges();
+                MessageBox.Show("Equipamento Adicionado com sucesso!");
+                MessageBox.Show("Numero da ordem de serviço: " + equipamento.NumeroOS.ToString());
+                ViewBag.Clientes = ctx.Clientes;
+                return View();
+            }
+            catch
+            {
+                MessageBox.Show("Erro ao adicionar equipamento!");
+            }
+
+            return RedirectToAction("NovoEquipamento");
+        }
+
+
         public ActionResult Editar(int Id)
         {
-            if (Session["UsuarioLogado"]!= null && Id != 0)
+            if (Session["UsuarioLogado"] != null && Id != 0)
             {
 
                 var Cliente = ctx.Clientes.Find(Id);
-                var E = ctx.Equipamentos.ToList();
-                foreach (var Equipamento in E)
-                {
-                    if (Equipamento.ClienteId == Cliente.Id)
+
+                ViewBag.Equipamentos = ctx.Equipamentos.Where(a => a.ClienteId == Cliente.Id);
+                
+              
+                    if (Id == Cliente.Id)
                     {
 
                         ViewData["Nome"] = Cliente.Nome;
@@ -120,20 +179,21 @@ namespace RLInfo.Controllers
                         ViewData["Bairro"] = Cliente.Bairro;
                         ViewData["Cep"] = Cliente.Cep;
                         ViewData["Estado"] = Cliente.Estado;
-                        ViewData["Observacao"] = Cliente.Observacao;
                         ViewData["Email"] = Cliente.Email;
                         ViewData["CPF"] = Cliente.CPF;
 
-                        ViewData["Tipo"] = Equipamento.Tipo;
-                        ViewData["Modelo"] = Equipamento.Modelo;
-                        ViewData["Marca"] = Equipamento.Marca;
-                        ViewData["ObservacaoY"] = Equipamento.Observacao;
-                        ViewData["Defeito"] = Equipamento.Defeito;
+
+                        //ViewData["Tipo"] = Equipamento.Tipo;
+                        //ViewData["Modelo"] = Equipamento.Modelo;
+                        //ViewData["Marca"] = Equipamento.Marca;
+                        //ViewData["ObservacaoY"] = Equipamento.Observacao;
+                        //ViewData["Defeito"] = Equipamento.Defeito;
+                        //ViewData["Preco"] = Equipamento.Preco;
                     }
 
-                }
-
+             
                 return View();
+
             }
             else
             {
@@ -144,12 +204,14 @@ namespace RLInfo.Controllers
         }
 
         [HttpPost]
-        public ActionResult Editar(string Menu, string cliente, string email, string nome, string nomex, string endereco, string bairro, string estado, string cep, string telefone, string observacao, string tipo, string marca, string modelo, string defeito, long cpf)
+        public ActionResult Editar(string Menu, string cliente, string email, string nome, string nomex, string endereco, string bairro, string estado, string cep, string telefone, string observacao, string tipo, string marca, string modelo, string defeito, long cpf, double preco, string status, string situacao)
         {
             var Cli = ctx.Clientes.ToList();
             var Eqp = ctx.Equipamentos.ToList();
             var ClienteX = ctx.Clientes.First(x => x.Nome == nome);
             var EquipamentoX = ctx.Equipamentos.First(y => y.ClienteId == ClienteX.Id);
+
+            
 
             switch (Menu)
             {
@@ -176,15 +238,22 @@ namespace RLInfo.Controllers
                     ClienteX.Cep = cep.ToUpper();
                     ClienteX.Telefone = telefone.ToUpper();
                     ClienteX.Email = email.ToLower();
+                  
 
                     EquipamentoX.Marca = marca.ToUpper();
                     EquipamentoX.Tipo = tipo.ToUpper();
                     EquipamentoX.Modelo = modelo.ToUpper();
                     EquipamentoX.Defeito = defeito.ToUpper();
                     EquipamentoX.Observacao = observacao.ToUpper();
+                    EquipamentoX.Preco = preco;
+                    EquipamentoX.Status = status;
+                    EquipamentoX.Situacao = situacao;
+
                     if (MessageBox.Show("Confirma a alteração dos dados?", "ATENÇÃO", MessageBoxButtons.YesNo) == DialogResult.Yes)
                     {
+                      
                         ctx.SaveChanges();
+                       
                         MessageBox.Show("Alterado com sucesso!", "Mensagem");
                         return RedirectToAction("Carteira");
                     }
@@ -231,9 +300,10 @@ namespace RLInfo.Controllers
         public ActionResult Carteira()
         {
             if (Session["UsuarioLogado"] != null)
-            {  
+            {
                 ViewBag.Clientes = ctx.Clientes;
-              
+                ViewBag.Equipamentos = "";                     
+
             }
             else
             {
@@ -248,7 +318,6 @@ namespace RLInfo.Controllers
             var Eqp = ctx.Equipamentos.ToList();
             ViewBag.Clientes = ctx.Clientes.ToList();
 
-
             try
             {
                 switch (Button)
@@ -257,7 +326,7 @@ namespace RLInfo.Controllers
                     case "Sair":
                         if (MessageBox.Show("Deseja Sair?", "ATENÇÃO", MessageBoxButtons.YesNo) == DialogResult.Yes)
                         {
-                            
+
                             Session["UsuarioLogado"] = null;
                             return RedirectToAction("Index");
                         }
@@ -265,7 +334,6 @@ namespace RLInfo.Controllers
                         {
                             break;
                         }
-
 
                     case "Novo":
                         // abrir view para cadastrar client
@@ -288,7 +356,7 @@ namespace RLInfo.Controllers
                 return View();
             }
 
-            if (cliente == "" && cpf <= 0 && CPFX <=0)
+            if (cliente == "" && cpf <= 0 && CPFX <= 0)
             {
                 MessageBox.Show("Um dos campos precisa ser preenchido", "Atenção!");
                 return View();
@@ -303,41 +371,56 @@ namespace RLInfo.Controllers
 
                 try
                 {
+
                     var x = ctx.Clientes.First(a => a.Nome == cliente);
-                    var y = ctx.Equipamentos.First(a => a.ClienteId == x.Id);
+                    ViewBag.Equipamentos = ctx.Equipamentos.Where(a => a.ClienteId == x.Id);
 
-                    if (cliente.ToUpper() == x.Nome)
-                    {
 
-                        ViewData["Tipo"] = y.Tipo;
-                        ViewData["Modelo"] = y.Modelo;
-                        ViewData["Marca"] = y.Marca;
-                        ViewData["ObservacaoY"] = y.Observacao;
-                        ViewData["Defeito"] = y.Defeito;
 
-                        ViewData["Id"] = x.Id;
-                        ViewData["Nome"] = x.Nome;
-                        ViewData["Telefone"] = x.Telefone;
-                        ViewData["Endereco"] = x.Endereco;
-                        ViewData["Bairro"] = x.Bairro;
-                        ViewData["Cep"] = x.Cep;
-                        ViewData["Estado"] = x.Estado;
-                        ViewData["Observacao"] = x.Observacao;
-                        ViewData["Email"] = x.Email;
-                        ViewData["CPF"] = x.CPF;
-                        return View();
-                    }
-                    else if (cliente != x.Nome && cpf != x.CPF)
-                    {
-                        MessageBox.Show("Cliente não encontrado");
-                        return View();
-                    }
+                    //var x = ctx.Clientes.First(a => a.Nome == cliente);
+                    //var y = ctx.Equipamentos.First(a => a.ClienteId == x.Id);
+
+                    //var z = ctx.Equipamentos;
+                    //var w = ctx.Clientes;
+
+
+                    //if (cliente.ToUpper() == x.Nome)
+                    //{                        
+                    //    ViewBag.Clientes = z.Where(i=>i.ClienteId == x.Id);
+                    //    ViewBag.Equipamentos = z.Where(i => i.ClienteId == x.Id);
+
+                    //    //ViewData["Date"] = y.Date;
+                    //    //ViewData["Preco"] = y.Preco.ToString("C", CultureInfo.CurrentCulture);
+                    //    //ViewData["Tipo"] = y.Tipo;
+                    //    //ViewData["NumeroOS"] = y.NumeroOS;
+                    //    //ViewData["Modelo"] = y.Modelo;
+                    //    //ViewData["Marca"] = y.Marca;
+                    //    //ViewData["ObservacaoY"] = y.Observacao;
+                    //    //ViewData["Defeito"] = y.Defeito;
+
+                    ViewData["Id"] = x.Id;
+                    ViewData["Nome"] = x.Nome;
+                    ViewData["Telefone"] = x.Telefone;
+                    ViewData["Endereco"] = x.Endereco;
+                    ViewData["Bairro"] = x.Bairro;
+                    ViewData["Cep"] = x.Cep;
+                    ViewData["Estado"] = x.Estado;
+                    ViewData["Observacao"] = x.Observacao;
+                    ViewData["Email"] = x.Email;
+                    ViewData["CPF"] = x.CPF;
+                    return View();
+                    //}
+                    //else if (cliente != x.Nome && cpf != x.CPF)
+                    //{
+                    //    MessageBox.Show("Cliente não encontrado");
+                    //    return View();
+                    //}
 
                 }
                 catch
                 {
                     MessageBox.Show("Cliente não encontrado");
-                    return View();
+                   return RedirectToAction("Carteira");
                 }
 
 
@@ -352,7 +435,9 @@ namespace RLInfo.Controllers
 
                     if (cpf == x.CPF)
                     {
-
+                        ViewData["Date"] = y.Date;
+                        ViewData["Preco"] = y.Preco.ToString("C", CultureInfo.CurrentCulture);
+                        ViewData["NumeroOS"] = y.NumeroOS;
                         ViewData["Tipo"] = y.Tipo;
                         ViewData["Modelo"] = y.Modelo;
                         ViewData["Marca"] = y.Marca;

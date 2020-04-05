@@ -14,6 +14,7 @@ namespace RLInfo.Mapping
             ToTable("Equipamento");
             HasKey(x => x.Id);
             Property(x => x.Tipo).HasMaxLength(60).IsRequired();
+            Property(x => x.NumeroOS).HasMaxLength(60).IsRequired();            
             Property(x => x.Marca).HasMaxLength(60).IsRequired();
             Property(x => x.Modelo).HasMaxLength(60).IsRequired();
             Property(x => x.Defeito).HasMaxLength(120).IsRequired();

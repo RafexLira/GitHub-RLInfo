@@ -2,35 +2,39 @@
 @{
     ViewBag.Title = "LoginAdm";
 }
-    <h3 class="text-left">ADM</h3>
+
 <div class="row">
-<div class="col-4 w-auto"></div>
-<div class="col-sm-4 col-md-4 col-lg-4">
+    <div class="col-4 w-auto"></div>
+    <div class="col-sm-4 col-md-4 col-lg-4">
 
-    
 
-@using (Html.BeginForm("LoginAdm", "Adm", FormMethod.Post)) { 
 
-    <fieldset class="border border-dark p-2 m-2 text-center">
-        <legend class="w-auto pl-3 pr-3"> Administrador</legend>
-        <div class="form-group row col">
+        @using (Html.BeginForm("LoginAdm", "Adm", FormMethod.Post))
+        {
 
-            @Html.LabelFor(x => x.Nome, new { @class="p-1 m-1" })
-            @Html.EditorFor(x => x.Nome, new { htmlAttributes = new {maxlength="15", @class = "form-control", pattern = "[A-Za-z]{4,30}"} })
-            <br />
-            <br />
+            <fieldset class="border border-dark p-2 m-2 text-center">
+                <legend class="w-auto pl-3 pr-3"> Administrador</legend>
+                <div class="form-group row col">
 
-            @Html.LabelFor(x => x.Senha, new { @class="p-1 m-1" })
-            @Html.EditorFor(x => x.Senha, new { htmlAttributes = new { maxlength="15", @class = "form-control", pattern = "[A-Za-z][0-9]+${4,30}", type = "Password" } })
+                    @Html.LabelFor(x => x.Nome, new { @class = "p-1 m-1" })
+                    @Html.EditorFor(x => x.Nome, new { htmlAttributes = new { maxlength = "15", @class = "form-control", pattern = "[A-Za-z]{4,30}" } })
+                    <br />
+                    <br />
 
-            <br />
-            <br />
-                <button type="submit" class="btn btn-dark">Entrar</button>
-         
-        </div>
-    </fieldset>
- }
+                    @Html.LabelFor(x => x.Senha, new { @class = "p-1 m-1" })
+                    @Html.EditorFor(x => x.Senha, new { htmlAttributes = new { maxlength = "15", @class = "form-control", pattern = "[A-Za-z][0-9]+${4,30}", type = "Password" } })
+
+                    <br />
+                    <br />
+                    <button type="submit" class="btn btn-dark">Entrar</button>
+
+                </div>
+            </fieldset>
+        }
     </div>
-<div class="col-4 w-auto"></div>
+    <div class="col-4 w-auto"></div>
 
-    </div>
+</div>
+<div class="col">
+    @Html.ActionLink("Página do usuário", "Index", "Home")
+</div>

@@ -3,7 +3,7 @@ namespace RLInfo.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class newrl : DbMigration
+    public partial class _new : DbMigration
     {
         public override void Up()
         {
@@ -41,6 +41,8 @@ namespace RLInfo.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
+                        NumeroOS = c.String(nullable: false, maxLength: 60),
+                        Date = c.DateTime(nullable: false),
                         Tipo = c.String(nullable: false, maxLength: 60),
                         Marca = c.String(nullable: false, maxLength: 60),
                         Modelo = c.String(nullable: false, maxLength: 60),
