@@ -243,7 +243,7 @@ namespace RLInfo.Controllers
                 }
                 else
                 {
-                    MessageBox.Show("A Exclusão cancelada!","ATENÇÃO!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Exclusão cancelada!","ATENÇÃO!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
 
                  return RedirectToAction("Carteira");               
