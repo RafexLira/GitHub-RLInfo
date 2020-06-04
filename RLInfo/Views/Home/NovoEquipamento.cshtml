@@ -1,5 +1,5 @@
 ﻿@model RLInfo.Models.Equipamento
-   
+
 @using RLInfo.Models
 @{
     ViewBag.Title = "NovoEquipamento";
@@ -11,68 +11,66 @@
     <fieldset class="border border-dark p-2 m-2 ">
         <legend class="w-auto pl-3 pr-3">Novo Equipamento</legend>
         <div class="row col">
+            <div class="form-group col-3">
+                <label><b>Nome</b></label>
+                <input class="form-control col text-secondary" type="text" name="Nome" maxlength="60" value="@ViewData["Nome"]" readonly />
+            </div>
+            <div class="form-group col-3">
+                <label><b>CPF</b></label>
+                <input class="form-control col text-secondary" type="text" name="CPF" maxlength="60" value="@ViewData["CPF"]" readonly />
+            </div>
             <div class=" form-group col-3">
 
                 @Html.LabelFor(x => x.Modelo, new { @class = "p-1 m-1 pr-1" })
-                @Html.EditorFor(x => x.Modelo, new { htmlAttributes = new { maxlength = "60", @class = "form-control col" } })
-            </div>
-            <div class="form-group col-3">
-                @Html.LabelFor(x => x.Marca, new { @class = "p-1 m-1 pr-1" })
-                @Html.EditorFor(x => x.Marca, new { htmlAttributes = new { maxlength = "60", @class = "form-control col", pattern = "[A-Za-z]{4,30}" } })
-            </div>
-            <div class="form-group col-3">
-                @Html.LabelFor(x => x.Defeito, new { @class = "p-1 m-1 pr-1" })
-                @Html.EditorFor(x => x.Defeito, new { htmlAttributes = new { maxlength = "60", @class = "form-control col", pattern = "[A-Za-z]{4,30}" } })
+                @Html.EditorFor(x => x.Modelo, new { htmlAttributes = new { maxlength = "30", @class = "form-control col", placeholder = "Ex.E1-571", required = "required" } })
             </div>
             <div class="form-group col-3">
                 @Html.LabelFor(x => x.Tipo, new { @class = "p-1 m-1 pr-1" })
-                @Html.EditorFor(x => x.Tipo, new { htmlAttributes = new { maxlength = "60", @class = "form-control col", pattern = "[A-Za-z]{4,30}" } })
+                @Html.EditorFor(x => x.Tipo, new { htmlAttributes = new { maxlength = "30", @class = "form-control col", placeholder = "Ex. Notebook" } })
+            </div>
+            <div class="form-group col-3">
+                @Html.LabelFor(x => x.Marca, new { @class = "p-1 m-1 pr-1" })
+                @Html.EditorFor(x => x.Marca, new { htmlAttributes = new { maxlength = "30", @class = "form-control col", placeholder = "Ex. Acer", required = "required" } })
+            </div>
+            <div class="form-group col-3">
+                @Html.LabelFor(x => x.Defeito, new { @class = "p-1 m-1 pr-1" })
+                @Html.EditorFor(x => x.Defeito, new { htmlAttributes = new { maxlength = "60", @class = "form-control col", placeholder = "Ex. Não Liga", required = "required" } })
             </div>
             <div class="form-group col-4">
                 <label class="pr-2">Observacão</label>
-                <textarea class="col form-control" name="Observacao" cols="1" rows="4" placeholder="Anotações importantes"></textarea>
+                <textarea class="col form-control" name="Observacao" cols="1" rows="4" placeholder="Ex. Cliente não deixou carregador..      Cliente deixou sinal de 50 reais.."></textarea>
             </div>
             <div class="form-group col-3">
-                <label class="p-1 m-1">Status</label>
+                <label class="p-1 m-1">Status do atendimento</label>
                 <select name="Status" class="form-control col">
-                    <option value="Manutencao" selected>Em Manutenção</option>
+                    <option value="Manutencão" selected>Em Manutenção</option>
                     <option value="Pronto">Pronto</option>
                     <option value="Entregue">Entregue</option>
                 </select>
             </div>
             <div class="form-group col-3">
-                <label class="p-1 m-1">Situacão</label>
+                <label class="p-1 m-1">Situacão financeira</label>
                 <select name="Situacao" class="form-control col">
                     <option value="A pagar" selected>A pagar</option>
-                    <option value="Pago">Pago</option>                   
+                    <option value="Pago">Pago</option>
                 </select>
             </div>
-            <div class="form-group col-3">
 
-                <label class="p-1 m-1">Vincular Cliente CPF</label>
-
-                <select name="CPF" class="form-control col">
-                    @foreach (var x in ViewBag.Clientes)
-                    {
-                        <option value="@x.CPF" selected>@x.CPF</option>
-                    }
-
-                </select>
-
-            </div>
             <div class="form-group col-3">
                 <label class="p-1 m-1">Valor do Serviço</label>
-                <input type="text" class="form-control col" name="Preco" maxlength="7" />
+                <input type="text" class="form-control col preco" name="Preco" required />
             </div>
         </div>
     </fieldset>
     <hr />
 
     <div class="form-group container row">
-        <button type="submit" class="btn btn-dark mr-3"><span class=""></span>Adicionar</button>
-        <a type="button" class="btn btn-dark" href="Carteira" ,"Home">Voltar</a>
+        <button type="submit" class="btn btn-dark mr-3"><span class="fa fa-user-plus"></span> Adicionar</button>
+        <a type="button" class="btn btn-dark" href="@Url.Action("Carteira","Home")"><span class="fa fa-backward"></span> Voltar</a>
 
     </div>
 }
+
+<!------------------------------------------------------------------------------------------->
 
 

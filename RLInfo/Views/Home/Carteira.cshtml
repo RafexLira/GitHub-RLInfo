@@ -1,6 +1,7 @@
 ﻿@model RLInfo.Models.Cliente
 @using RLInfo.Models
 
+   
 <h3 class="text-primary">Clientes</h3>
 <form class="mt-5" method="post" action="Carteira">
     <fieldset class="border border-dark p-2 m-2">
@@ -10,22 +11,23 @@
                 <label>Cliente</label>
             </div>
             <div class="form-group col-4">
-                <input class="form-control col" type="text" name="cliente" maxlength="60" pattern="[A-Za-z\s]{2,60}" />
+                <input class="form-control col" type="text" name="cliente" maxlength="60" />
             </div>
             <div class="form-group col">
                 <label>CPF</label>
             </div>
             <div class="form-group col-2 ml-n5">
-                <input class="form-control col" type="text" name="CPF" placeholder="Ex.124578963253" maxlength="13" minlength="9" pattern="[0-9]+$" />
+                <input class="form-control col cpf" type="text" name="CPF" minlength="14"/>
             </div>
             <div class="col">
-                <button type="submit" class="btn btn-dark"><span class=""></span>Buscar</button>
+                <button type="submit" name="Button" value="Buscar" class="btn btn-dark"><span class="fa fa-search"></span> Buscar</button>
             </div>
         </div>
     </fieldset>
     <!------------------------------------------------------------------------->
-    <hr />
+
     <div id="lista" style="display:none">
+        <hr />
         <fieldset class="border border-dark p-2 m-2">
             <legend class="w-auto pl-3 pr-3">Todos os clientes</legend>
             <div class="row col-12">
@@ -42,7 +44,8 @@
                         <tr id="tr">
                             <td>@x.Nome</td>
                             <td>@x.CPF</td>
-                            <td><button class="btn btn-dark" type="submit" value="@x.CPF" name="CPFX">Editar</button></td>
+                            @*<td><button class="btn btn-dark pr-2" type="submit" value="@x.CPF" name="CPFX">Editar</button></td>*@
+                            <td><button class="btn btn-dark" type="submit" value="@x.Id" name="BtnVer"><span class="fa fa-eye"></span> Ver</button></td>
                         </tr>
                     }
                 </table>
@@ -50,150 +53,134 @@
         </fieldset>
     </div>
     <!------------------------------------------------------------------------>
-    <hr />
-    <div id="DadosDoCliente">
+   
+
+    @if (ViewData["Nome"].ToString() != "")
+    {
+        <hr />
+
+        <div id="DadosDoCliente">
+            <fieldset class="border border-dark p-2 m-2">
+                <legend class="w-auto pl-3 pr-3">Dados do Cliente</legend>
+                <div class="container row">
+
+                    <div class="form-group col-3">
+                        <label><b>Nome</b></label>
+                        <input id="nome" class="form-control col text-secondary" type="text" name="nome" maxlength="60" value="@ViewData["Nome"]" readonly />
+                    </div>
+                    <div class="form-group col-3">
+                        <label class="pr-2"><b>Endereço</b></label><br />
+                        <label class="text-secondary"><b>@ViewData["Endereco"]</b></label>
+                    </div>
+                    <div class="form-group col-3">
+                        <label class="pr-2"><b>Bairro</b></label><br />
+                        <label class="text-secondary"><b>@ViewData["Bairro"]</b></label>
+                    </div>
+                    <div class="form-group col-3">
+                        <label class="pr-2"><b>Estado</b></label><br />
+                        <label class="text-secondary"><b>@ViewData["Estado"]</b></label>
+                    </div>
+                    <div class="form-group col-3">
+                        <label class="pr-2"><b>Cep</b></label><br />
+                        <label class="text-secondary"><b>@ViewData["Cep"]</b></label>
+                    </div>
+                    <div class="form-group col-3">
+                        <label class="pr-2"><b>Telefone</b></label><br />
+                        <label class="text-secondary"><b>@ViewData["Telefone"]</b></label>
+                    </div>
+                    <div class="form-group col-3">
+                        <label class="pr-2"><b>Email</b></label><br />
+                        <label class="text-secondary"><b>@ViewData["Email"]</b></label>
+                    </div>
+                    <div class="form-group col-3">
+                        <label class="pr-2"><b>CPF</b></label><br />
+                        <label class="text-secondary"><b>@ViewData["CPF"]</b></label>
+                    </div>
+                    <div class="form-group">
+                        <button id="BtnEditar" type="submit" class="btn btn-dark pl-2" name="BtnEditCli" value="@ViewData["CPF"]"><span class="fa fa-edit"></span> Editar</button>
+                        <button type="submit" class="btn btn-dark" name="NovoEquipamento" value="@ViewData["CPF"]"><span class=" fa fa-user-plus"></span> Novo Equipamento</button>
+                    </div>
+                </div>
+
+            </fieldset>
+        </div>
+    }
+    else 
+    {
+
+    }
+    <!-------------------------------------------------------------------------->
+   
+<div id="DadosDoEquipamento">
+
+    @foreach (var x in ViewBag.Equipamentos)
+    {
+        <hr />
         <fieldset class="border border-dark p-2 m-2">
-            <legend class="w-auto pl-3 pr-3">Dados do Cliente</legend>
+            <legend class="w-auto pl-3 pr-3">Equipamento</legend>
             <div class="container row">
 
                 <div class="form-group col-3">
-                    <label><b>Nome</b></label>
-                    <input id="nome" class="form-control col text-secondary" type="text" name="nome" maxlength="60" value="@ViewData["Nome"]" readonly />
+                    <label class="pr-2 text-danger"><b>Número OS</b></label>
+                    <input class="form-control col text-danger" type="text" name="NumOS" maxlength="60" value="@x.NumeroOS" readonly />
+
                 </div>
                 <div class="form-group col-3">
-                    <label class="pr-2"><b>Endereço</b></label><br />
-                    <label class="text-secondary"><b>@ViewData["Endereco"]</b></label>
+                    <label class="pr-2"><b>Data de entrada/Hora</b></label>
+                    <label class="text-secondary"><b>@x.Date</b></label>
                 </div>
                 <div class="form-group col-3">
-                    <label class="pr-2"><b>Bairro</b></label><br />
-                    <label class="text-secondary"><b>@ViewData["Bairro"]</b></label>
+                    <label class="pr-2"><b>Modelo</b></label><br />
+                    <label class="text-secondary"><b>@x.Modelo</b></label>
                 </div>
                 <div class="form-group col-3">
-                    <label class="pr-2"><b>Estado</b></label><br />
-                    <label class="text-secondary"><b>@ViewData["Estado"]</b></label>
+                    <label class="pr-2"><b>Marca</b></label><br>
+                    <label class="text-secondary"><b>@x.Marca</b></label>
                 </div>
                 <div class="form-group col-3">
-                    <label class="pr-2"><b>Cep</b></label><br />
-                    <label class="text-secondary"><b>@ViewData["Cep"]</b></label>
+                    <label class="pr-2"><b>Defeito</b></label><br />
+                    <label class="text-secondary"><b>@x.Defeito</b></label>
                 </div>
                 <div class="form-group col-3">
-                    <label class="pr-2"><b>Telefone</b></label><br />
-                    <label class="text-secondary"><b>@ViewData["Telefone"]</b></label>
+                    <label class="pr-2"><b>Tipo</b></label><br />
+                    <label class="text-secondary"><b>@x.Tipo</b></label>
                 </div>
-                <div class="form-group col-3">
-                    <label class="pr-2"><b>Email</b></label><br />
-                    <label class="text-secondary"><b>@ViewData["Email"]</b></label>
+                <div class="form-group col-6">
+                    <label class="pr-2"><b>Observação</b></label><br />
+                    <label class="text-secondary"><b>@x.Observacao</b></label>
                 </div>
-                <div class="form-group col-3">
-                    <label class="pr-2"><b>CPF</b></label><br />
-                    <label class="text-secondary"><b>@ViewData["CPF"]</b></label>
+                <div class="form-group col-6">
+                    <label class="pr-2"><b>Status</b></label><br />
+                    <label class="text-secondary"><b>@x.Status</b></label>
+                </div>
+                <div class="form-group col-6">
+                    <label class="pr-2"><b>Data/ Hora</b></label><br />
+                    <label class="text-secondary"><b>@x.Date</b></label>
+                </div>
+                <div class="form-group col-6">
+                    <label class="pr-2"><b>Valor</b></label><br />
+                    <label class="text-secondary"><b>R$</b><b>@x.Preco</b></label>
+                </div>
+                <div class="form-group col-6">
+                    <label class="pr-2"><b>Situação</b></label><br />
+                    <label class="text-secondary"><b>@x.Situacao</b></label>
+                </div>
+                <div class="form-group mr-2">
+                    <button id="BtnEditar" type="submit" class="btn btn-dark" name="BtnEditEquip" value="@x.NumeroOS"><span class="fa fa-edit"></span> Editar</button>
+                </div>
+                <div class="form-group ">
+                    <button id="" type="submit" class="btn btn-dark" name="BtnImprimir" value="@x.NumeroOS"><span class="fa fa-print"></span> Imprimir</button>
                 </div>
             </div>
-
-
         </fieldset>
-    </div>
-    <!-------------------------------------------------------------------------->
-    <hr />
-    <div id="DadosDoEquipamento">
-        @foreach (var x in ViewBag.Equipamentos)
-            {
-                <fieldset class="border border-dark p-2 m-2">
-                    <legend class="w-auto pl-3 pr-3">Equipamento</legend>
-                    <div class="container row">
-
-                        <div class="form-group col-3">
-                            <label class="pr-2"><b>OS</b></label>
-                            <label class="text-danger"><b>@x.NumeroOS</b></label>
-                        </div>
-                        <div class="form-group col-3">
-                            <label class="pr-2"><b>Data de entrada/Hora</b></label>
-                            <label class="text-secondary"><b>@x.Date</b></label>
-                        </div>
-                        <div class="form-group col-3">
-                            <label class="pr-2"><b>Modelo</b></label><br />
-                            <label class="text-secondary"><b>@x.Modelo</b></label>
-                        </div>
-                        <div class="form-group col-3">
-                            <label class="pr-2"><b>Marca</b></label><br>
-                            <label class="text-secondary"><b>@x.Marca</b></label>
-                        </div>
-                        <div class="form-group col-3">
-                            <label class="pr-2"><b>Defeito</b></label><br />
-                            <label class="text-secondary"><b>@x.Defeito</b></label>
-                        </div>
-                        <div class="form-group col-3">
-                            <label class="pr-2"><b>Tipo</b></label><br />
-                            <label class="text-secondary"><b>@x.Tipo</b></label>
-                        </div>
-                        <div class="form-group col-6">
-                            <label class="pr-2"><b>Observação</b></label><br />
-                            <label class="text-secondary"><b>@x.Observacao</b></label>
-                        </div>
-                        <div class="form-group col-6">
-                            <label class="pr-2"><b>Status</b></label><br />
-                            <label class="text-secondary"><b>@x.Status</b></label>
-                        </div>
-                        <div class="form-group col-6">
-                            <label class="pr-2"><b>Data/ Hora</b></label><br />
-                            <label class="text-secondary"><b>@x.Date</b></label>
-                        </div>
-                        <div class="form-group col-6">
-                            <label class="pr-2"><b>Valor</b></label><br />
-                            <label class="text-secondary"><b>@x.Preco</b></label>
-                        </div>
-                        <div class="form-group col-6">
-                            <label class="pr-2"><b>Situação</b></label><br />
-                            <label class="text-secondary"><b>@x.Situacao</b></label>
-                        </div>
-
-                    </div>
-                </fieldset>
-            }
-    </div>
-   
- 
-    <!------------------------------------------------------------------------------->
-    <div>
-        <button class="btn btn-dark" name="Button" value="Novo">Novo Cliente</button>
-        @*@Html.ActionLink("Novo Equipamento", "NovoEquipamento", "Home")*@
-        <a type="button" class="btn btn-dark" href="NovoEquipamento" ,"Home">Novo Equipamento</a>
-        <button id="BtnEditar" class="btn btn-dark" name="Button" value="Editar">Editar</button>
-        <button id="BtnListarTodos" class="btn btn-dark" type="button" onclick="Listar()">Listar Todos</button>
-        <button class="btn btn-dark" name="Button" value="Sair">Sair</button>
-    </div>
-
-</form>
-
-<hr />
-
-<script type="text/javascript">
-
-
-
-    function Listar() {
-
-        var lista = document.getElementById('lista');
-        var DadosDoEquipamento = document.getElementById('DadosDoEquipamento');
-        var DadosDoCliente = document.getElementById('DadosDoCliente');
-        var BtnListarTodos = document.getElementById('BtnListarTodos');
-        var BtnEditar = document.getElementById('BtnEditar');
-
-
-        if (lista.style.display == 'none') {
-
-
-            lista.style.display = 'block';
-            DadosDoEquipamento.style.display = 'none';
-            DadosDoCliente.style.display = 'none';
-            BtnEditar.style.display = 'none';
-            BtnListarTodos.style.display = 'none';
-
-
-        }
-
     }
-
-</script>
+</div>
+    <hr />
+    <div>
+        <button class="btn btn-dark" name="Button" value="Novo"><span class="fa fa-user-plus"></span> Novo Cliente</button>
+        <button id="BtnListarTodos" class="btn btn-dark" type="button" onclick="Listar()"><span class=" fa fa-list"></span> Listar Todos</button>
+        <button class="btn btn-dark" name="Button" value="Sair"><span class=" fa fa-sign-out"></span> Sair</button>
+    </div>
+</form>
 
 

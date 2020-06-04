@@ -3,7 +3,7 @@ namespace RLInfo.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class _new : DbMigration
+    public partial class novo : DbMigration
     {
         public override void Up()
         {
@@ -24,7 +24,7 @@ namespace RLInfo.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        CPF = c.Long(nullable: false),
+                        CPF = c.String(nullable: false),
                         Email = c.String(maxLength: 120),
                         Nome = c.String(nullable: false, maxLength: 60),
                         Telefone = c.String(nullable: false, maxLength: 60),
@@ -48,6 +48,9 @@ namespace RLInfo.Migrations
                         Modelo = c.String(nullable: false, maxLength: 60),
                         Defeito = c.String(nullable: false, maxLength: 120),
                         Observacao = c.String(maxLength: 600),
+                        Status = c.String(),
+                        Situacao = c.String(),
+                        Preco = c.Double(nullable: false),
                         ClienteId = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)

@@ -23,8 +23,22 @@ namespace RLInfo
                       "~/Scripts/bootstrap.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
-                      "~/Content/Site.css"));
+                      "~/Content/bootstrap.css"));
+
+            bundles.Add(new StyleBundle("~/css/font-awesome").Include(
+                      "~/css/font-awesome.min.css"));
+
+            bundles.Add(new ScriptBundle("~/bundles/inputmask").Include(
+            "~/Scripts/inputmask/jquery.inputmask.js"));
+
+             bundles.Add(new ScriptBundle("~/bundles/mask").Include(
+            "~/Scripts/mask/jquery.mask.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/script").Include(
+          "~/Scripts/Script.js"));
+          
+            bundles.Add(new ScriptBundle("~/bundles/sweetalert").Include(
+         "~/Scripts/sweetalert.js"));
         }
     }
 }

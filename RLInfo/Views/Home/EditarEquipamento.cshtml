@@ -1,0 +1,119 @@
+﻿@model RLInfo.Models.Equipamento
+@using RLInfo.Models
+@{
+    ViewBag.Title = "EditarEquipamento";
+}
+
+    <form class="mt-5" method="post" action="EditarEquipamento">
+
+        <fieldset class="border border-dark p-2 m-2">
+            <legend class="w-auto pl-3 pr-3">Editar Equipamento</legend>
+            <div class="container row">
+
+                <div class="form-group col-3">
+                    <label class="text-danger"><b>Numero OS</b></label>
+                    <input class="form-control col text-danger" type="text" name="NumOS" maxlength="60" value="@ViewData["NumOS"]" readonly />
+                </div>
+                <div class="form-group col-3">
+                    <label class="text-secondary">Data de Entrada / Hora </label>
+                    <input class="form-control col bg-dark text-light" type="text" name="Date" maxlength="60" value="@ViewData["Date"]" readonly />
+                </div>
+                <div class="form-group col-3">
+                    <label class="text-secondary">Modelo </label>
+                    <input class="form-control col" type="text" name="Modelo" value="@ViewData["Modelo"]" maxlength="30" placeholder="Ex. E-1571" required />
+                </div>
+                <div class="form-group col-3">
+                    <label class="text-secondary">Tipo</label>
+                    <input class="form-control col" type="text" name="Tipo" value="@ViewData["Tipo"]" maxlength="30" placeholder="Ex. Notebook" />
+                </div>
+                <div class="form-group col-3">
+                    <label class="text-secondary">Marca</label>
+                    <input class="form-control col" type="text" name="Marca" value="@ViewData["Marca"]" maxlength="30" placeholder="Ex. Acer" required />
+                </div>
+                <div class="form-group col-3">
+                    <label class="text-secondary">Defeito</label>
+                    <input class="form-control col" type="text" name="Defeito" value="@ViewData["Defeito"]" maxlength="60" placeholder="Ex. Não Liga" required />
+                </div>
+                <div class="form-group col-3">
+                    <label>Observação</label>
+                    <textarea class="col" name="Observacao" cols="1" rows="4" placeholder="Ex. Cliente não deixou carregador..      Cliente deixou sinal de 50 reais..">@ViewData["Observacao"]</textarea>
+                </div>
+                <div class="form-group col-3">
+                    <label class="p-1 m-1">Status do atendimento</label>
+                    <select name="Status" class="form-control col">
+
+                        @if (@ViewData["Status"].ToString() == "Manutencão")
+                        {
+                            <option value="@ViewData["Status"]" selected>@ViewData["Status"]</option>
+                            <option value="Pronto">Pronto</option>
+                            <option value="Entregue">Entregue</option>
+                        }
+                        else if (@ViewData["Status"].ToString() == "Pronto")
+                        {
+                            <option value="@ViewData["Status"]" selected>@ViewData["Status"]</option>
+                            <option value="Manutencão">Manutenção</option>
+                            <option value="Entregue">Entregue</option>
+
+                        }
+                        else if (@ViewData["Status"].ToString() == "Entregue")
+                        {
+                            <option value="@ViewData["Status"]" selected>@ViewData["Status"]</option>
+                            <option value="Pronto">Pronto</option>
+                            <option value="Manutenção">Manutenção</option>
+                        }
+                        else
+                        {
+                            <option selected>Adicione uma Opção</option>
+                            <option value="Manutenção">Manutenção</option>
+                            <option value="Pronto">Pronto</option>
+                            <option value="Entregue">Entregue</option>
+                        }
+
+                    </select>
+                </div>
+                <div class="form-group col-3">
+                    <label class="p-1 m-1">Situacão financeira</label>
+                    <select name="Situacao" class="form-control col">
+
+
+                        @if (@ViewData["Situacao"].ToString() == "Pago")
+                        {
+                            <option value="@ViewData["Situacao"]" selected>@ViewData["Situacao"]</option>
+                            <option value="A pagar">A pagar</option>
+
+                        }
+                        else if (@ViewData["Situacao"].ToString() == "A pagar")
+                        {
+                            <option value="@ViewData["Situacao"]" selected>@ViewData["Situacao"]</option>
+                            <option value="Pago">Pago</option>
+                        }
+                        else
+                        {
+                            <option selected>Adicione uma Opção</option>
+                            <option value="Pago">Pago</option>
+                            <option value="A pagar">A pagar</option>
+                        }
+
+                    </select>
+                </div>
+                <div class="form-group col-3">
+                    <label class="text-secondary">Valor do serviço</label>
+                    <input class="form-control col preco" type="text" name="Preco" value="@ViewData["Preco"]" />
+                </div>
+            </div>
+        </fieldset>
+        <hr />
+        <div class="form-group col-3">
+            <button type="submit" class="btn btn-dark" name="BtnSalvar"><span class="fa fa-save"></span> Salvar</button>
+            <button type="submit" class="btn btn-dark" name="Button" value="@ViewData["NumOS"]"><span class="fa fa-trash"></span>Deletar</button>
+            <button type="Button" class="btn btn-dark" onclick="location.href='@Url.Action("Carteira", "Home")'"><span class="fa fa-backward"></span> Voltar</button>
+        </div>
+    </form>
+
+
+
+
+
+
+
+

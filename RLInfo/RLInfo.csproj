@@ -142,21 +142,9 @@
     <Compile Include="Mapping\ClienteMap.cs" />
     <Compile Include="Mapping\EquipamentoMap.cs" />
     <Compile Include="Mapping\UsuarioMap.cs" />
-    <Compile Include="Migrations\202003270250349_new.cs" />
-    <Compile Include="Migrations\202003270250349_new.Designer.cs">
-      <DependentUpon>202003270250349_new.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202003270416246_new2.cs" />
-    <Compile Include="Migrations\202003270416246_new2.Designer.cs">
-      <DependentUpon>202003270416246_new2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202003310253310_new21.cs" />
-    <Compile Include="Migrations\202003310253310_new21.Designer.cs">
-      <DependentUpon>202003310253310_new21.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202004050355024_new3.cs" />
-    <Compile Include="Migrations\202004050355024_new3.Designer.cs">
-      <DependentUpon>202004050355024_new3.cs</DependentUpon>
+    <Compile Include="Migrations\202005110422407_novo.cs" />
+    <Compile Include="Migrations\202005110422407_novo.Designer.cs">
+      <DependentUpon>202005110422407_novo.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Adm.cs" />
@@ -209,20 +197,28 @@
     <Content Include="fonts\fontawesome-webfont.eot" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Scripts\inputmask\bindings\inputmask.binding.js" />
+    <Content Include="Scripts\inputmask\inputmask.js" />
+    <Content Include="Scripts\inputmask\inputmask.min.js" />
+    <Content Include="Scripts\inputmask\jquery.inputmask.js" />
+    <Content Include="Scripts\inputmask\jquery.inputmask.min.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.maskMoney.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\mask\jquery.mask.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\popper-utils.js" />
     <Content Include="Scripts\popper-utils.min.js" />
     <Content Include="Scripts\popper.js" />
     <Content Include="Scripts\popper.min.js" />
+    <Content Include="Scripts\Script.js" />
     <Content Include="Scripts\src\index.js" />
     <Content Include="Scripts\src\methods\defaults.js" />
     <Content Include="Scripts\src\methods\destroy.js" />
@@ -286,6 +282,7 @@
     <Content Include="Scripts\src\utils\setAttributes.js" />
     <Content Include="Scripts\src\utils\setStyles.js" />
     <Content Include="Scripts\src\utils\setupEventListeners.js" />
+    <Content Include="Scripts\sweetalert.js" />
     <Content Include="Scripts\umd\popper-utils.js" />
     <Content Include="Scripts\umd\popper-utils.min.js" />
     <Content Include="Scripts\umd\popper.js" />
@@ -321,6 +318,8 @@
     <Content Include="Views\Adm\NovoUsuario.cshtml" />
     <Content Include="Views\Adm\EditarUsuario.cshtml" />
     <Content Include="Views\Home\NovoEquipamento.cshtml" />
+    <Content Include="Views\Home\EditarEquipamento.cshtml" />
+    <Content Include="Views\Home\Imprimir.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -338,17 +337,8 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202003270250349_new.resx">
-      <DependentUpon>202003270250349_new.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003270416246_new2.resx">
-      <DependentUpon>202003270416246_new2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003310253310_new21.resx">
-      <DependentUpon>202003310253310_new21.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202004050355024_new3.resx">
-      <DependentUpon>202004050355024_new3.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202005110422407_novo.resx">
+      <DependentUpon>202005110422407_novo.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

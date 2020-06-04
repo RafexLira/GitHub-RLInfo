@@ -1,56 +1,97 @@
 ﻿
-    <h3 class="text-primary">Cadastrar</h3>
-    <form method="post" action="Novo">
-        <fieldset class="border border-dark p-2 m-2">
-            <legend class="w-auto pl-3 pr-3">Adicionar Cliente</legend>
+<h3 class="text-primary">Cadastrar</h3>
 
-            <div class="container row">
+<form method="post" action="Novo">
+    <fieldset class="border border-dark p-2 m-2">
+        <legend class="w-auto pl-3 pr-3">Adicionar Cliente</legend>
 
-                <div class="form-group col-3">
-                    <label class="text-secondary">Nome </label>
-                    <input class="form-control col" type="text" name="nome" maxlength="60" pattern="[A-Za-z\s]{2,60}" />
+        <div class="container row">
 
-                </div>
-                <div class="form-group col-3">
-                    <label class="text-secondary">Endereço</label>
-                    <input class="form-control col" type="text" name="endereco" maxlength="60" />
-                </div>
-                <div class="form-group col-3">
-                    <label class="text-secondary">Bairro </label>
-                    <input class="form-control col" type="text" name="bairro" maxlength="60" />
-                </div>
-                <div class="form-group col-3">
-                    <label class="text-secondary">Estado</label>
-                    <input class="form-control col" type="text" name="estado" maxlength="60" pattern="[A-Za-z\s]{1,60}" />
-                </div>
-                <div class="form-group col-3">
-                    <label class="text-secondary">Cep </label>
-                    <input class="form-control col" type="text" name="cep" maxlength="60" pattern="[0-9]+$" />
-                </div>
-                <div class="form-group col-3">
-                    <label class="text-secondary">Telefone </label>
-                    <input class="form-control col" type="text" name="telefone" maxlength="60" pattern="[0-9]+$" />
-                </div>
-                <div class="form-group col-3">
-                    <label class="text-secondary">Email</label>
-                    <input class="form-control col" type="email" name="email" maxlength="60" />
-                </div>
-                <div class="form-group col-3">
-                    <label class="text-secondary">CPF </label>
-                    <input class="form-control col" type="text" name="cpf" maxlength="13" minlength="9" pattern="[0-9]+$" />
-                </div>
-
+            <div class="form-group col-3">
+                <label class="text-secondary"><b>Nome</b><b class="text-danger">*</b></label>
+                <input id="nome" class="form-control col" type="text" name="nome" maxlength="60" required />
             </div>
-        </fieldset>
-        <!-------------------------------------------------------------------------->
-        <hr />
-        
-        <div class="form-group container row">
-            <button type="submit" class="btn btn-dark mr-3"><span class=""></span>Adicionar</button>
-            <a type="button" class="btn btn-dark" href="Carteira" ,"Home">Voltar</a>
-
+            <div class="form-group col-3">
+                <label class="text-secondary"><b>Endereço</b><b class="text-danger">*</b></label>
+                <input class="form-control col" type="text" name="endereco" maxlength="60" required />
+            </div>
+            <div class="form-group col-3">
+                <label class="text-secondary"><b>Bairro</b><b class="text-danger">*</b> </label>
+                <input class="form-control col" type="text" name="bairro" maxlength="60" required />
+            </div>
+            <div class="form-group col-3">
+                <label class="text-secondary"><b>Estado</b><b class="text-danger">*</b></label>
+                <input class="form-control col" type="text" name="estado" maxlength="60" required />
+            </div>
+            <div class="form-group col-3">
+                <label class="text-secondary"><b>CEP</b><b class="text-danger">*</b> </label>
+                <input class="form-control col cep" type="text" name="cep" required />
+            </div>
+            <div class="form-group col-3">
+                <label class="text-secondary"><b>Telefone</b><b class="text-danger">*</b></label>
+                <input class="form-control col telefone" type="text" name="telefone" required />
+            </div>
+            <div class="form-group col-3">
+                <label class="text-secondary"><b>E-mail</b><b class="text-danger">*</b> exemplo@exemplo.com </label>
+                <input class="form-control col" type="email" name="email" required />
+            </div>
+            <div class="form-group col-3">
+                <label class="text-secondary"><b>CPF</b> 123.456.789-99 </label>
+                <input class="form-control col cpf" type="text" name="cpf" required />
+            </div>
         </div>
+    </fieldset>
+    <!-------------------------------------------------------------------------->
+    <hr />
+    <fieldset class="border border-dark p-2 m-2">
+        <legend class="w-auto pl-3 pr-3">Equipamento</legend>
+        <div class="container row">
+            <div class="form-group col-3">
+                <label class="text-secondary"><b>Modelo</b><b class="text-danger">*</b></label>
+                <input class="form-control col" type="text" name="Modelo" maxlength="30" placeholder="Aspire 5" required />
+            </div>
+            <div class="form-group col-3">
+                <label class="text-secondary"><b>Tipo</b></label>
+                <input class="form-control col" type="text" name="Tipo" maxlength="30" placeholder="Ex. Notebook" />
+            </div>
+            <div class="form-group col-3">
+                <label class="text-secondary"><b>Marca</b><b class="text-danger">*</b> </label>
+                <input class="form-control col" type="text" name="Marca" maxlength="30" placeholder="Ex. Acer" required />
+            </div>
+            <div class="form-group col-3">
+                <label class="text-secondary"><b>Defeito</b><b class="text-danger">*</b> </label>
+                <input class="form-control col" type="text" name="Defeito" maxlength="60" placeholder="Ex. Não Liga" required />
+            </div>
+            <div class="form-group col-4">
+                <label class="text-secondary"><b>Observação</b></label>
+                <textarea class="col form-control" name="Observacao" cols="1" rows="4" placeholder="Ex. Cliente não deixou carregador..      Cliente deixou sinal de 50 reais.."></textarea>
+            </div>
+            <div class="form-group col-3">
+                <label class="text-secondary"><b>Status do atendimento</b></label>
+                <select name="Status" class="form-control col">
+                    <option value="Manutencão" selected>Em Manutenção</option>
+                    <option value="Pronto">Pronto</option>
+                    <option value="Entregue">Entregue</option>
+                </select>
+            </div>
+            <div class="form-group col-3">
+                <label class="text-secondary"><b>Situação financeira</b></label>
+                <select name="Situacao" class="form-control col">
+                    <option value="A pagar" selected>A pagar</option>
+                    <option value="Pago">Pago</option>
+                </select>
+            </div>
+            <div class="form-group col-3">
+                <label class="text-secondary"><b>Valor do Serviço</b><b class="text-danger">*</b> </label>
+                <input type="text" class="form-control col preco" name="Preco" required />
+            </div>
+        </div>
+    </fieldset>
+    <div class="form-group container row">
+        <button type="submit" class="btn btn-dark mr-3"><span class="fa fa-user-plus"></span> Adicionar</button>
+        <a type="button" class="btn btn-dark" href="@Url.Action("Carteira","Home")"><span class="fa fa-backward"></span> Voltar</a>
+    </div>
+</form>
+<!---------------------------------------------------------->
 
-
-    </form>
 

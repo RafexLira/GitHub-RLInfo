@@ -1,0 +1,136 @@
+﻿
+@{
+    ViewBag.Title = "Ordem de Serviço";
+}
+
+    <div id="DadosOS" class="mt-5">
+        <fieldset class="border border-dark p-2 m-2">
+
+            <h2 class="text-center">Ordem de Serviço</h2><br />
+
+            <fieldset class="border border-dark p-2 m-2">
+                <div class="text-center">
+                    <div>
+                        <label>Rafael Lira Informática - Overclock</label>
+                    </div>
+                    <div>
+                        <label>Rua Herculano Pinheiro, 13 Lote 38 Quadra E - Pavuna - RJ</label>
+                    </div>
+                    <div>
+                        <label>Telefone: (21) 97235-0292</label>
+                    </div>
+                    <div>
+                        <label>Email: rafaellira.hti@outlook.com</label>
+                    </div>
+                    <div>
+                        <label>CNPJ: 00000000000/0001</label>
+                    </div>
+
+                </div>
+            </fieldset>
+            <div class="ml-2">
+                <label><b>NUMERO OS:</b><b class="text-danger ml-2">@ViewData["NumeroOS"]</b></label>
+            </div>
+
+            <fieldset class="border border-dark p-2 m-2">
+                <legend class="w-auto pl-3 pr-3">Dados do Cliente</legend>
+                <div class="row">
+                    <div class="form-group col-3">
+                        <label class="text-secondary font-weight-bold">Nome</label>
+                        <input class="form-control col" type="text" name="nome" value="@ViewData["Nome"]" readonly />
+                    </div>
+                    <div class="form-group col-3">
+                        <label class="text-secondary font-weight-bold">Endereço</label>
+                        <input class="form-control col" type="text" name="Endereco" value=" @ViewData["Endereco"]" readonly />
+                    </div>
+                    <div class="form-group col-3">
+                        <label class="text-secondary font-weight-bold">Bairro</label>
+                        <input class="form-control col" type="text" name="Bairro" value=" @ViewData["Bairro"]" readonly />
+                    </div>
+                    <div class="form-group col-3">
+                        <label class="text-secondary font-weight-bold">Estado</label>
+                        <input class="form-control col" type="text" name="Estado" value=" @ViewData["Estado"]" readonly />
+                    </div>
+                    <div class="form-group col-3">
+                        <label class="text-secondary font-weight-bold">CEP</label>
+                        <input class="form-control col" type="text" name="CEP" value=" @ViewData["CEP"]" readonly />
+                    </div>
+                    <div class="form-group col-3">
+                        <label class="text-secondary font-weight-bold">Telefone</label>
+                        <input class="form-control col" type="text" name="Telefone" value="@ViewData["Telefone"]" readonly />
+                    </div>
+                    <div class="form-group col-3">
+                        <label class="text-secondary font-weight-bold">Email</label>
+                        <input class="form-control col" type="text" name="CPF" value=" @ViewData["Email"]" readonly />
+                    </div>
+                </div>
+            </fieldset>
+         
+            <fieldset class="border border-dark p-2 m-2">
+                <legend class="w-auto pl-3 pr-3">Equipamento</legend>
+                <div class="row">
+                    <div class="form-group col-3">
+                        <label class="text-secondary">Data de Entrada / Hora </label>
+                        <input class="form-control col bg-dark text-light" type="text" name="Date" value="@ViewData["Data"]" readonly />
+                    </div>
+                    <div class="form-group col-3">
+                        <label class="text-secondary">Modelo </label>
+                        <input class="form-control col" type="text" name="Modelo" value="@ViewData["Modelo"]" readonly />
+                    </div>
+                    <div class="form-group col-3">
+                        <label class="text-secondary">Tipo</label>
+                        <input class="form-control col" type="text" name="Tipo" value="@ViewData["Tipo"]" readonly />
+                    </div>
+                    <div class="form-group col-3">
+                        <label class="text-secondary">Marca</label>
+                        <input class="form-control col" type="text" name="Marca" value="@ViewData["Marca"]" readonly />
+                    </div>
+                    <div class="form-group col-3">
+                        <label class="text-secondary">Defeito</label>
+                        <input class="form-control col" type="text" name="Defeito" value="@ViewData["Defeito"]" readonly />
+                    </div>
+                    <div class="form-group col-3 mb-5">
+                        <label class="text-secondary">Status do Equipamento</label>
+                        <input class="form-control col" type="text" name="Status" value="@ViewData["Status"]" readonly />
+                    </div>
+                    <div class="form-group col-3 mb-5">
+                        <label class="text-secondary">Situação Financeira</label>
+                        <input class="form-control col" type="text" name="Situacao" value="@ViewData["Situacao"]" readonly />
+                    </div>
+                    <div class="form-group col-3">
+                        <label class="text-secondary">Valor do Serviço</label><br />
+                        <label class="text-secondary mt-1">R$ @ViewData["Preco"]</label>
+                    </div>
+                    <div class="form-group col-12">
+                        <label>Informações complementares</label>
+                        <textarea class="col-12" name="Observacao" cols="4" rows="6" readonly>@ViewData["Observacao"]</textarea>
+                    </div>
+                </div>
+                <div class="col-12 row mt-5">
+                    <div class="text-center col-6">
+                        <hr class="bg-dark col-6" />
+                        <label>Assinatura do Gerente</label>
+                    </div>
+                    <div class="text-center col-6">
+                        <hr class="bg-dark col-6" />
+                        <label>Assinatura do Cliente</label>
+                    </div>
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <div class="text-center col-12">
+                        <label>________________________,_______ de _____________________de____________</label>
+                    </div>
+                </div>
+            </fieldset>
+            <div class="col-12 row">
+                <button id="BtnImprimir" type="button" class="btn btn-dark mr-2" name="" onclick="Ocultar()"><span class="fa fa-print"></span></button>
+                <a id="BtnVoltar" type="button" class="btn btn-dark" href="@Url.Action("Carteira","Home")"><span class="fa fa-backward"></span> Voltar</a>
+
+            </div>
+        </fieldset>
+</div>
+
+
+
